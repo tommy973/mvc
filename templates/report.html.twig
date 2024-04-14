@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+    <article class="report-article">
+        <h1 class="whole-width">Redovisningar</h1>
+        <div class="report-left-col">
+            <h3>Meny</h3>
+            <nav class="reportmenu">
+                <ul class="reportmenulist">
+                    <li><a href="#kmom01">Kmom01</a></li>
+                    <li><a href="#kmom02">Kmom02</a></li>
+                    <li><a href="#kmom03">Kmom03</a></li>
+                    <li><a href="#kmom04">Kmom04</a></li>
+                    <li><a href="#kmom05">Kmom05</a></li>
+                    <li><a href="#kmom06">Kmom06</a></li>
+                    <li><a href="#kmom0710">Kmom07-10</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="report-right-col">
+            <h3 id="kmom01">Kmom01</h3>
+            <p>
+                Under kursmomentet har jag fått stifta bekantskap med ramverket Symfony som till en början upplevdes
+                ganska överväldigande men efter några timmars arbete med övningarna och uppgifterna samt hjälp från
+                föreläsningarna så började det klarna lite. Men det är klart att man blir mer bekväm med ett nytt område ju mer
+                man använder det, om det så är ett programmeringsspråk eller ett ramverk eller något helt annat område.
+            </p>
+            <p>
+                PHP har jag träffat på sedan tidigare och likaså objektorientering. OOP använde vi en del i kursen OOPython
+                från det andra kurspaketet och jag tycker att jag i grunden har en förståelse för hur objektorientering är
+                uppbyggt kring klasser, objekt och metoder men behöver arbeta mer med det för att få in vanan.
+            </p>
+            <p>
+                Objektorienterad programmering utgår från klasser, vilka fungerar som mallar för objekt som skapas.
+                Ett objekt instansieras utifrån en klass och får alla properties som klassen har. Properties är de
+                variablerna som används av klassen och antingen kan objektet tilldelas properties när det skapas via parametrar
+                eller så finns de redan lagrade i klassen som konstanter. Objektet har även tillgång till klassens alla metoder
+                som kan användas på ett liknande sätt som funktioner. Det som är speciellt är att metoderna i en klass når varje
+                enskilt objekt via variablen $this, som hela tiden pekar mot det aktuella objektet. På så sätt kan en klass ha
+                använts för att skapa flera olika objekt och där varje enskilt objekt blir en egen instans av klassen.
+                Detta gör att objekten kan likna varandra men hålls separerade i själva programmet.
+            </p>
+            <p>
+                Jag har sedan tidigare använt php.net som en manual för att hitta information om hur man kan använda PHP.
+                Men jag uppfattar att phptherightway.com verkar sammanfatta metoderna väldigt väl och samtidigt länka vidare
+                till fördjupande texter och förklaringar. Bland annat länkas till relevanta artiklar från php.net.
+            </p>
+            <p>
+                Under kursmomentet har det funnits ett antal motgångar, framförallt med min style och javascript. Jag gjorde 
+                först en installation av Symfony med Twig och Encore. Jag arbetade sedan med sidan lokalt och fick i ordning 
+                min style så allt fungerade. På lucky-sidan använde jag ett style-element för att ändra bakgrundsfärgen på 
+                body- och article-elementen samt textfärgen i article-elementet. Både CSS och JavaScript-delen fungerade lokalt. 
+                När jag sedan laddade upp det till studentservern så fungerade Lucky men CSS:en laddades inte in.
+            </p>
+            <p>
+                Kollade efter liknande problem på bland annat Discord och hittade tips att köra Assets-Mapper istället för Encore 
+                så jag gjorde en ny installation av Symfony och Twig men utan Encore. Nu fungerar inte CSS lokalt men på studentservern. 
+                Men såg några förslag på lösningar till detta på kursens Discord-chat som jag ska titta närmare på.
+            </p>
+            <p>
+                Vid första installationen försökte jag dela upp CSS-koden i flera filer och sedan importera dessa i app.css. 
+                Detta fick jag att fungera lokalt men inte via studentservern. Att dela upp koden fungerade inte heller vid andra 
+                installationen av Symfony. Dock fungerade stylingen om jag lade all CSS-kod i app.css så i nuläget får det vara så.
+            </p>
+            <p>
+                Både vid första och andra installationen av Symfony så fungerade inte Javascripten via style-elementet i twig-filen, 
+                så lösningen blev att lägga in style som ett attribut i article-elementet. Detta gjorde dock att jag inte löst åtkomsten 
+                mot body-elementet men bakgrundsfärg och textfärg slumpas fram på article-elementet tillsammans med ett slumpat tal mellan 0 och 100.
+            </p>
+            <p>
+                Har fått det mesta att fungera som jag ville, dock inte som jag tänkt mig från början men ska försöka lösa detta framöver.
+                Nu vidare till nästa kursmoment.
+            </p>
+        </div>
+    </article>
+{% endblock %}

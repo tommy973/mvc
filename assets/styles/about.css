@@ -1,0 +1,26 @@
+.about-article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.whole-width {
+    grid-column: 1/3;
+}
+
+.about-left-col {
+    grid-column: 1/2;
+}
+
+.about-right-col {
+    grid-column: 2/3;
+}
+
+.about-right-col,
+.about-left-col {
+    padding-top: 1em;
+}
+
+.about-picture {
+    width: 400px;
+    padding-top: 1em;
+}

@@ -1,0 +1,48 @@
+.report-article {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.whole-width {
+    grid-column: 1/3;
+}
+
+.report-left-col {
+    grid-column: 1/2;
+}
+
+.report-right-col {
+    grid-column: 2/3;
+}
+
+.report-right-col,
+.report-left-col {
+    padding-top: 1em;
+}
+
+.reportmenulist {
+    margin-left: -1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.reportmenulist li {
+    margin-top: 0.5em;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.reportmenulist a {
+    text-decoration: none;
+    font-family: "Josefin Slab", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: large;
+    color: #333;
+}
+
+.reportmenulist a:hover {
+    text-decoration: underline;
+    color: #333;
+}

@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Home</h1>
+
+    <picture class="picture-right">
+        <img src="{{ asset('images/me_smile.jpg') }}" alt="En glad filur" class="presentation-picture">
+        <figcaption>En glad filur</figcaption>
+    </picture>
+
+    <h3>Min me-sida i kursen MVC</h3>
+    <p>
+        Jag heter Tommy och läser kurspaketet Webbprogrammering och Databaser under läsåret 2023 / 2024.
+    </p>
+    <p>
+        Jag har sedan slutet av 90-talet haft ett intresse för att skapa webbsidor.
+        Det har alltid varit på en hobbynivå för att det är väldigt roligt och under åren har jag fått möjligheten att prova olika tekniker.
+    </p>
+    <p>
+        I början handlade det om att lära sig HTML. Från hur man lägger in en bild på en webbsida till att sedan kunna dela upp sidan i flera
+        frames för att kunna få en "snygg" sidomeny.
+        Under åren har jag även tidigare använt mig av bland annat CSS och PHP.
+    </p>
+    <p>
+        Förra läsåret gick jag det andra kurspaketet (Webbutveckling och programmering) och har under dessa två läsår fått
+        lära mig mycket nya grejer inom programmering mot webben som jag inte hade någon kunskap om tidigare.
+    </p>
+{% endblock %}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Holtwood+One+SC&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
+@import "init.css";
+@import "start.css";
+@import "typography.css";
+@import "header.css";
+@import "footer.css";
+@import "home.css";
+@import "report.css";
+@import "about.css";
+@import "api.css";
+
+/* import('./init.css'); */
+
+/* import(url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Holtwood+One+SC&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap'));
+import("init.css");
+import("start.css");
+import("typography.css");
+import("header.css");
+import("footer.css");
+import("home.css");
+import("report.css");
+import("about.css");
+import("api.css"); */

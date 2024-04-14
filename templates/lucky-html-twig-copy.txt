@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+<article id="lucky-article">
+    <h1>Lucky</h1>
+    <h3>Välkommen till den slumpmässiga sidan.</h3>
+    <p>
+    Ditt tal som slumpats fram är: {{ luckynumber }}
+    </p>
+    <p>
+        Body-elementet har fått färgen: {{ bodycolorname }}.<br>
+        Article-elementet har fått färgen: {{ backgroundname }}.<br>
+        Texten har fått färgen: {{ fontcolorname }}.
+    </p>
+    </div>
+</article>
+<script>
+    let bodyElement = document.getElementsByTagName('body');
+    bodyElement[0].style.backgroundColor = '{{ bodycolor }}';
+
+    let articleElement = document.getElementById('lucky-article');
+    articleElement.style.backgroundColor = '{{ background }}';
+    articleElement.style.color = '{{ fontcolor }}';
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+<article id="lucky-article" style="background-color: {{background}}; color: {{fontcolor}};">
+    <h1>Lucky</h1>
+    <h3>Välkommen till den slumpmässiga sidan.</h3>
+    <p>
+    Ditt tal som slumpats fram är: {{ luckynumber }}
+    </p>
+    <p>
+        Article-elementet har fått färgen: {{ backgroundname }}.<br>
+        Texten har fått färgen: {{ fontcolorname }}.
+    </p>
+    </div>
+</article>
+{% endblock %}

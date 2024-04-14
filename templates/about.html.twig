@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+<article class="about-article">
+    <h1 class="whole-width">Om kursen mvc</h1>
+    <div class="about-left-col">
+        <p>
+            Kursen mvc, vars fulla namn är Objektorienterade webbteknologier,
+            är en kurs som innehåller många olika delar, så som webbapplikationer och enhetstestning, och inriktar sig mest mot programmeringsspråket PHP. 
+        </p>
+        <p>
+            MVC, som är kursens smeknamn, är en förkortningen för Model-View-Contoller som är ett
+            designmönster för att bland annat strukturera upp webbsidor.
+        </p>
+        <p>
+            Kursen är på 7,5hp och ges under läsperiod 4.
+            <ul>
+                <li><a href="https://github.com/dbwebb-se/mvc">Kursens Git-repo</a></li>
+                <li><a href="https://github.com/tommy973/mvc">Mitt Git-repo</a></li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-right-col">
+        <picture>
+            <img src="{{ asset('images/about_image_unsplash.png') }}" alt="En glad filur" class="about-picture">
+            <figcaption>En liten bild med lite kod</figcaption>
+        </picture>
+    </div>
+</article>
+
+{% endblock %}

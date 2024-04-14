@@ -1,0 +1,15 @@
+footer {
+    margin-top: auto;
+    height: 100px;
+    background-color: #ccc;
+    text-align: center;
+}
+
+.footer-info {
+    margin-top: 35px;
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+}
