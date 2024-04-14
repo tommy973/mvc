@@ -1,4 +1,4 @@
-![MVC - Headerpic for README](./public/img/headerimage.png "MVC - Headerimage")
+![MVC - Headerpic for README](./public/images/headerimage.png "MVC - Headerimage")
 
 README.md
 ===============
