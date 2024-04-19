@@ -23,3 +23,9 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> Tools-folder ###
+/tools/**/vendor/
+/tools/**/composer.lock
+.php-cs-fixer.cache
+###< Tools-folder ###
