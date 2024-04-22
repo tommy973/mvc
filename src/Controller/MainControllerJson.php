@@ -13,7 +13,7 @@ class MainControllerJson
     public function jsonQuote(): Response
     {
         date_default_timezone_set('Europe/Stockholm');
-        $randomquote = random_int(0, 6); 
+        $randomquote = random_int(0, 6);
         $quotes = [
             'Nära skjuter ingen hare här på fortet - Gunde Svan',
             'Bazinga! - Sheldon Cooper',
