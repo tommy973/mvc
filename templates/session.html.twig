@@ -9,6 +9,8 @@
         I nuvarande session finns {{ sessionLength }} attribut.
     </p>
 
+    {{ include('flash.html.twig') }}
+
     {% for key, value in currentSession %}
         {{ key }} : {{ value }}<br>
     {% endfor %}
