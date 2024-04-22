@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+    <h1>Session</h1>
+
+    <p>
+        I nuvarande session finns {{ sessionLength }} attribut.
+    </p>
+
+    {% for key, value in currentSession %}
+        {{ key }} : {{ value }}<br>
+    {% endfor %}
+
+    <form method="post" action="">
+        <p>
+            <input type="submit" name="session_delete" value="Delete session"
+                onClick="this.form.action='{{ path('session_delete') }}';"
+            >
+    </form>
+
+{% endblock %}
