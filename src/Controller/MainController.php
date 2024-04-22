@@ -31,8 +31,8 @@ class MainController extends AbstractController
     {
         $number = random_int(0, 100);
         $bodycolornumber = random_int(0, 6);
-        $backgroundnumber = random_int(0,6);
-        $fontcolornumber = random_int(0,6);
+        $backgroundnumber = random_int(0, 6);
+        $fontcolornumber = random_int(0, 6);
         $colorwheel = ["red", "green", "blue", "yellow", "black", "grey", "white"];
         $colorwheelname = ["röd", "grön", "blå", "gul", "svart", "grå", "vit"];
 
@@ -52,14 +52,6 @@ class MainController extends AbstractController
     #[Route("/api/", name:"api_index")]
     public function api_index(): Response
     {
-        $data = [
-            'lucky-message' => 'Hi there!'
-        ];
-
-        $response = new Response();
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $this->render('api.html.twig', $data);
+        return $this->render('api.html.twig');
     }
 }
