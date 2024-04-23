@@ -7,21 +7,10 @@ class Card {
     protected $suit;
     protected $rank;
 
-    public function __construct()
+    public function __construct($suit = null, $rank = null)
     {
-        $this->suit = null;
-        $this->rank = null;
-    }
-
-    public function draw()
-    {
-        $suits = ['hearts', 'spades', 'diamonds', 'clubs'];
-        $ranks = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king'];
-
-        $randomSuit = random_int(0, 3);
-        $randomRank = random_int(0, 12);
-        $this->suit = $suits[$randomSuit];
-        $this->rank = $ranks[$randomRank];
+        $this->suit = $suit;
+        $this->rank = $rank;
     }
 
     public function getSuit(): ?string
@@ -33,5 +22,4 @@ class Card {
     {
         return $this->rank;
     }
-
 }
