@@ -78,7 +78,7 @@ figcaption {
     font-style: italic;
 }
 
-header {
+.mainheader {
     width: 100%;
     height: 200px;
     background-color: #ccc;
@@ -86,12 +86,20 @@ header {
     position: relative;
 }
 
-.header-image {
+.cardheader {
     width: 100%;
-    height: 150px;
+    height: 250px;
+    background-color: #ccc;
+    color: #333;
+    position: relative;
 }
 
-.headertitle {
+.header-image {
+    width: 100%;
+    height: 150px; 
+}
+
+.mainheadertitle {
     font-family: "Holtwood One SC", serif;
     font-weight: 400;
     font-style: normal;
@@ -105,11 +113,27 @@ header {
     left: 70%;
 }
 
-.mainmenu {
+.cardheadertitle {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+    margin-right: 20%;
+    margin-top: 100px;
+    color: #eee;
+    display: inline-block;
+    position: relative;
+    top: -274px;
+    left: 70%;
+}
+
+.mainmenu,
+.submenu {
     width: 100%;
 }
 
-.mainmenulist {
+.mainmenulist,
+.submenulist {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -118,13 +142,15 @@ header {
     justify-content: space-around;
 }
 
-.mainmenulist li {
+.mainmenulist li,
+.submenulist li {
     margin-top: -0.3em;
     list-style-type: none;
     text-decoration: none;
 }
 
-.mainmenulist a {
+.mainmenulist a,
+.submenulist a {
     text-decoration: none;
     font-family: "Josefin Slab", serif;
     font-weight: 800;
@@ -133,9 +159,17 @@ header {
     color: #333;
 }
 
-.mainmenulist a:hover {
+.mainmenulist a:hover,
+.submenulist a:hover {
     text-decoration: underline;
     color: #333;
+}
+
+.submenu {
+    background-color: #ccc;
+    height: 2em;
+    margin-top: -0.5em;
+    border-top: 1px dotted #333;
 }
 
 footer {
