@@ -1,0 +1,14 @@
+{% extends "basecards.html.twig" %}
+
+{% block title %}Deck of cards{% endblock %}
+
+{% block body %}
+    <h1>Deck of cards</h1>
+
+    <h3>En sorterad kortlek</h3>
+
+    {% for value in deckofcards %}
+        {{ value }}<br>
+    {% endfor %}
+
+{% endblock %}
