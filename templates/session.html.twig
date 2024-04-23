@@ -11,9 +11,7 @@
 
     {{ include('flash.html.twig') }}
 
-    {% for key, value in currentSession %}
-        {{ key }} : {{ value }}<br>
-    {% endfor %}
+    {{ dump(currentSession) }}
 
     <form method="post" action="">
         <p>
