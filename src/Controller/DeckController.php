@@ -117,4 +117,66 @@ class DeckController extends AbstractController
 
         return $this->render('cards/deck.html.twig', $data);
     }
+
+    #[Route("/card/deck/draw", name: "draw_card")]
+    public function DrawCardFromDeck(
+        SessionInterface $session
+    ): Response
+    {
+
+        $deck = $session->get("currentdeck");
+
+        $cardlimit = $deck->numberOfCardsInDeck();
+
+        if ($cardlimit == 0) {
+            throw new \Exception("Leken är slut, du kan inte dra fler kort.");
+        }
+        
+        $drawnCard = [];
+        $drawnCard[] = $deck->drawSingleCard();
+
+
+        // $testDeck->drawSingleCard();
+
+        $data = [
+            'deckofcards' => $deck->getCardsAsString(),
+            'drawncard' => $drawnCard,
+            'numberofcards' => $deck->numberOfCardsInDeck()
+        ];
+
+        $session->set("currentdeck", $deck);
+
+        return $this->render('cards/drawcard.html.twig', $data);
+    }
+
+    #[Route("/card/deck/draw/{number<\d+>}", name: "draw_cards")]
+    public function DrawCardsFromDeck(
+        SessionInterface $session,
+        int $number
+    ): Response
+    {
+        $deck = $session->get("currentdeck");
+
+        $cardlimit = $deck->numberOfCardsInDeck();
+
+        if ($number > $cardlimit) {
+            throw new \Exception("Du har dragit fler kort än som finns i leken");
+        }
+
+        $drawncards = [];
+        
+        for ($i = 0; $i < $number; $i++) {
+            $drawncards[] = $deck->drawSingleCard();
+        }
+
+        $data = [
+            'deckofcards' => $deck->getCardsAsString(),
+            'drawncard' => $drawncards,
+            'numberofcards' => $deck->numberOfCardsInDeck()
+        ];
+
+        $session->set("currentdeck", $deck);
+
+        return $this->render('cards/drawcard.html.twig', $data);
+    }
 }
