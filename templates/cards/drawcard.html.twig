@@ -1,0 +1,28 @@
+{% extends "basecards.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block body %}
+    <h1>Draw card</h1>
+
+    <h3>Drar ett slumpmässigt kort</h3>
+
+    <p>
+        Det valda kortet / korten är: <br>
+        {% for value in drawncard %}
+            {{ value }}<br>
+        {% endfor %}
+    </p>
+
+    <p>
+        Det finns {{ numberofcards }} kort kvar.
+    </p>
+
+    <p>
+        Kvarvarande kort är: <br>
+        {% for value in deckofcards %}
+            {{ value }}<br>
+        {% endfor %}
+    </p>
+
+{% endblock %}
