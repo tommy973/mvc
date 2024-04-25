@@ -1,0 +1,25 @@
+{% extends "basecards.html.twig" %}
+
+{% block title %}Deck of cards{% endblock %}
+
+{% block body %}
+    <h1>Deal cards</h1>
+
+    <h3>En sorterad kortlek</h3>
+
+    {% for i in 1..numberofplayers %}
+        Spelare {{i}} : <br>
+        {% for value in cardhand[i-1] %}
+            {{ value }}<br>
+        {% endfor %}
+        <br>
+    {% endfor %}
+
+    <p>
+        Kvarvarande kort är: <br>
+        {% for value in deckofcards %}
+            {{ value }}<br>
+        {% endfor %}
+    </p>
+
+{% endblock %}
