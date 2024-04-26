@@ -331,3 +331,87 @@ footer {
 .flash-warning:before {
     content: "⚠";
 }
+
+/* Card-design */
+
+.cardcontainer {
+    width: 860px;
+    margin-left: 2em;
+    display: grid;
+    grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px;
+}
+
+.singlecardcontainerred {
+    width: 60px;
+    height: 100px;
+    background-color: #eee;
+    border-radius: 10%;
+    margin-bottom: 1em;
+    color: red;
+    border: 1px solid;
+    padding: 3px;
+}
+
+.singlecardcontainerblack {
+    width: 60px;
+    height: 100px;
+    background-color: #eee;
+    border-radius: 10%;
+    margin-bottom: 1em;
+    color: #333;
+    border: 1px solid;
+    padding: 3px;
+}
+
+.upperleftrank {
+    top: 5px;
+    left: 5px;
+}
+
+.upperleftsuit {
+    top: 15px;
+    left: 5px;
+
+}
+
+.lowerrightrank {
+    transform: rotate(-180deg);
+    bottom: 5px;
+    right: 5px;
+}
+
+.lowerrightsuit {
+    transform: rotate(-180deg);
+    bottom: 15px;
+    right: 5px;
+}
+
+
+/* Deal card form style */
+
+.playercardform {
+    width: 300px;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    padding-left: 2em;
+    row-gap: 1em;
+}
+
+.playercardform label {
+    grid-column: 1/2;
+    height: 2.5em;
+    font-size: large;
+    margin-top: 0.5em;
+}
+
+.inputfield {
+    grid-column: 2/3;
+    height: 2.5em;
+    font-size: large;
+}
+
+.inputbutton {
+    grid-column: 1/3;
+    height: 2.5em;
+    font-size: large;
+}
