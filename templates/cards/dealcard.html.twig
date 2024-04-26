@@ -3,14 +3,16 @@
 {% block title %}Deck of cards{% endblock %}
 
 {% block body %}
-    <h1>Deal cards</h1>
+    <h1>Dela ut kort</h1>
 
-    <h3>Dela ut kort</h3>
+    <h3>Hur många kort och hur många spelare?</h3>
 
     <form method="post" action="">
-        Antal spelare: <input type="number" name="num_players" min="1" max="52" value="1">
-        Antal kort: <input type="number" name="num_cards" min="1" max="52" value="1">
-        <input type="submit" name="do_it" value="Deal cards">
+        <div class="playercardform">
+            <label for="num_players">Antal spelare: </label><input class="inputfield" type="number" name="num_players" min="1" max="52" value="1">
+            <label for="num_cards">Antal kort: </label><input class="inputfield" type="number" name="num_cards" min="1" max="52" value="1">
+            <input class="inputbutton" type="submit" name="do_it" value="Dela ut kort">
+        </div>
     </form>
 
 {% endblock %}
