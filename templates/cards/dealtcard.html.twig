@@ -3,23 +3,83 @@
 {% block title %}Deck of cards{% endblock %}
 
 {% block body %}
-    <h1>Deal cards</h1>
+    <h1>Dela ut kort</h1>
 
-    <h3>En sorterad kortlek</h3>
+    <h3>Följande giv har delats ut:</h3>
 
     {% for i in 1..numberofplayers %}
-        Spelare {{i}} : <br>
-        {% for value in cardhand[i-1] %}
-            {{ value }}<br>
-        {% endfor %}
+        <h4>Spelare {{i}} : </h4>
+        <div class="cardcontainer">
+            {% for value in cardhand[i-1] %}
+                {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                    <div class="singlecardcontainerred">
+                {% else %}
+                    <div class="singlecardcontainerblack">
+                {% endif %}
+                    <div class="singlecardborder">
+                        <div class="upperleftrank">
+                            {% if value|length == 2 %}
+                            {{ value|slice(0, 1) }}
+                            {% else %}
+                            {{ value|slice(0, 2) }}
+                            {% endif %}
+                        </div>
+                        <div class="upperleftsuit">
+                            {{ value[-1:] }}
+                        </div>
+                        <br>
+                        <div class="lowerrightsuit">
+                            {{ value[-1:] }}
+                        </div>
+                        <div class="lowerrightrank">
+                            {% if value|length == 2 %}
+                            {{ value|slice(0, 1) }}
+                            {% else %}
+                            {{ value|slice(0, 2) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
         <br>
     {% endfor %}
 
     <p>
-        Kvarvarande kort är: <br>
-        {% for value in deckofcards %}
-            {{ value }}<br>
-        {% endfor %}
+        <h4>Kvarvarande kort är: </h4>
+        <div class="cardcontainer">
+            {% for value in deckofcards %}
+                {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                    <div class="singlecardcontainerred">
+                {% else %}
+                    <div class="singlecardcontainerblack">
+                {% endif %}
+                    <div class="singlecardborder">
+                        <div class="upperleftrank">
+                            {% if value|length == 2 %}
+                            {{ value|slice(0, 1) }}
+                            {% else %}
+                            {{ value|slice(0, 2) }}
+                            {% endif %}
+                        </div>
+                        <div class="upperleftsuit">
+                            {{ value[-1:] }}
+                        </div>
+                        <br>
+                        <div class="lowerrightsuit">
+                            {{ value[-1:] }}
+                        </div>
+                        <div class="lowerrightrank">
+                            {% if value|length == 2 %}
+                            {{ value|slice(0, 1) }}
+                            {% else %}
+                            {{ value|slice(0, 2) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </p>
 
 {% endblock %}
