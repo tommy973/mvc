@@ -1,9 +1,10 @@
 <?php
 
-namespace Tommy\Card;
+namespace App\Card;
 
-use Tommy\Card\Card;
-use Tommy\Card\CardHand;
+use App\Card\Card;
+use App\Card\CardGraphic;
+use App\Card\CardHand;
 
 class DeckOfCards
 {
@@ -20,7 +21,7 @@ class DeckOfCards
 
         for ($i = 0; $i < count($suits); $i++) {
             for ($j = 0; $j < count($ranks); $j++) {
-                $this->deck[] = new Card($suits[$i], $ranks[$j]);
+                $this->deck[] = new CardGraphic($suits[$i], $ranks[$j]);
             }
         }
     }
@@ -33,7 +34,8 @@ class DeckOfCards
     {
         $cards = [];
         foreach ($this->deck as $singleCard) {
-            $cards[] = $singleCard->getRankAsString() . " of " . $singleCard->getSuitAsString();
+            // $cards[] = $singleCard->getRankAsString() . " of " . $singleCard->getSuitAsString();
+            $cards[] = $singleCard->getCardAsString();
         }
         return $cards;
     }
