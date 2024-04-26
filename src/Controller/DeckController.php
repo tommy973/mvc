@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Tommy\Card\Card;
-use Tommy\Card\CardHand;
-use Tommy\Card\DeckOfCards;
+use App\Card\Card;
+use App\Card\CardHand;
+use App\Card\DeckOfCards;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -73,7 +73,6 @@ class DeckController extends AbstractController
         SessionInterface $session
     ): Response
     {
-
         $deck = $session->get("currentdeck");
 
         if (empty($deck)) {
@@ -199,8 +198,6 @@ class DeckController extends AbstractController
             'cardhand' => $cardhandsArray,
             'deckofcards' => $deck->getDeckAsStringArray(),
         ];
-
-        
 
         return $this->render('cards/dealtcard.html.twig', $data);
     }
