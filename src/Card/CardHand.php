@@ -1,8 +1,8 @@
 <?php
 
-namespace Tommy\Card;
+namespace App\Card;
 
-use Tommy\Card\Card;
+use App\Card\Card;
 
 class CardHand
 {
