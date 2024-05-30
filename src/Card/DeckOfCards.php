@@ -2,14 +2,13 @@
 
 namespace App\Card;
 
-use App\Card\Card;
+// use App\Card\Card;
 use App\Card\CardGraphic;
-use App\Card\CardHand;
+// use App\Card\CardHand;
 
 class DeckOfCards
 {
     private $deck = [];
-    private $tempdeck = [];
 
     /**
      * Creates a deck of 52 cards, sorted by suits and ranks
