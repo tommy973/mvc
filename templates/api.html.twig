@@ -10,10 +10,66 @@
             <h3>Kmom01</h3>
         </div>
         <div class="row-link">
-            - <a href="{{ path('jsonquote') }}">JSONQuote</a>
+            <a href="{{ path('jsonquote') }}">Test</a>
         </div>
         <div class="row-description">
             En sida som visar upp dagens citat, tillsammans med dagens datum.
+        </div>
+        <div class="row-link">
+            <form method="get" action="{{ path('jsonquote') }}">
+                <input class="apibutton" type="submit" name="do_it" value="JSONQuote">
+            </form>
+        </div>
+        <div class="row-description">
+            En sida som visar upp dagens citat, tillsammans med dagens datum.
+        </div>
+    </div>
+    <div class="api-row">
+        <div class="row-header">
+            <h3>Kmom02</h3>
+        </div>
+        <div class="row-link">
+            <form method="get" action="{{ path('jsondeck') }}">
+                <input class="apibutton" type="submit" name="do_it" value="JSONDeck">
+            </form>
+        </div>
+        <div class="row-description">
+            Visar upp en kortlek som är sorterad i efter färg och värde.
+        </div>
+        <div class="row-link">
+            <form method="post" action="{{ path('jsonshuffle') }}">
+                <input class="apibutton" type="submit" name="do_it" value="JSONShuffle">
+            </form>
+        </div>
+        <div class="row-description">
+            Visar upp en kortlek som är blandad.
+        </div>
+        <div class="row-link">
+            <form method="post" action="{{ path('jsondraw') }}">
+                <input class="apibutton" type="submit" name="do_it" value="JSONDraw">
+            </form>
+        </div>
+        <div class="row-description">
+            Drar ett kort från leken.
+        </div>
+        <div class="row-link">
+            <form method="post" action="{{ path('jsondraw') }}">
+                <input class="apifield" type="number" name="num_cards" min="1" max="52" value="1">
+                <input class="apibutton" type="submit" name="do_it" value="JSONDrawSeveral">
+            </form>
+        </div>
+        <div class="row-description">
+            Drar valfritt antal kort ur leken.
+        </div>
+        <div class="row-link">
+            <form method="post" action="{{ path('jsondeal') }}">
+                <input class="apifield" type="number" name="num_players" min="1" max="52" value="1">
+                <input class="apifield" type="number" name="num_cards" min="1" max="52" value="1">
+                <input class="apibutton" type="submit" name="do_it" value="JSONDeal">
+            </form>
+        </div>
+        <div class="row-description">
+            Delar ut kort till ett antal spelare.
         </div>
     </div>
 </article>
