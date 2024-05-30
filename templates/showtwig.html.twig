@@ -1,0 +1,19 @@
+{% extends "testbase.html.twig" %}
+
+{% block title %}Test 5 - Show Twig{% endblock %}
+
+{% block body %}
+
+<h2>Showtwig</h2>
+
+{% if uservalue is defined %}
+<p>
+    {{ uservalue }}
+</p>
+{% endif %}
+
+<p>
+    {{ button }}
+</p>
+
+{% endblock %}
