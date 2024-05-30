@@ -1,0 +1,60 @@
+{% extends "testbase.html.twig" %}
+
+{% block title %}Test 6{% endblock %}
+
+{% block body %}
+
+<h2>Testsida 6</h2>
+
+<h4>a href-länk som visar dataobjektet som JSON</h4>
+
+<a href="{{ path('show_json_with_get')}}">Show Json with get (funkar lokalt och stud-server)</a>
+
+<br>
+<br>
+
+<a href="{{ path('show_json_with_get_value', {value: 10}) }}">Show Json with get and parameter (funkar lokalt och stud-server)</a>
+
+<br>
+<br>
+
+<a href="{{ path('show_json_with_post')}}">Show Json with post (not allowed)</a>
+
+<br>
+<br>
+
+<h4>ett form-formulär med knappar som använder action-attributet till samma path som a href-länkarna ovan. Ska skriva ut dataobjektet som JSON</h4>
+
+<form method="get" action="{{ path('show_json_with_get')}}">
+    <input type="submit" name="getButton" value="Get Button">
+    (Funkar lokalt, på stud-servern sker en fetch och visar en klickbar länk via symfonys task-bar som leder till JSON, men den laddas inte automatiskt)
+</form>
+<br>
+<form method="get" action="{{ path('show_json_with_get_value')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="getButton" value="Get Button med value">
+    (Funkar lokalt, på stud-servern sker en fetch och visar en klickbar länk via symfonys task-bar som leder till JSON, men den laddas inte automatiskt. Skickar heller inte med värdet 10)
+</form>
+<br>
+<form method="post" action="{{ path('show_json_with_post')}}">
+    <input type="submit" name="postButton" value="Post Button">
+    (Funkar lokalt men inte via stud-servern utan gör en fetch och visar även här en länk men som inte är klickbar)
+</form>
+<br>
+<form method="post" action="{{ path('show_json_with_post_value')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="postButton" value="Post Button med value">
+    (Funkar lokalt men inte via stud-servern utan gör en fetch och visar även här en länk men som inte är klickbar)
+</form>
+<br>
+<form method="post" action="{{ path('show_json_with_post_redirect')}}">
+    <input type="submit" name="postButton" value="Post Button redirect">
+    (Funkar lokalt men visar value: null. Via stud-servern görs en fetch och visar även här en länk men som inte är klickbar)
+</form>
+<br>
+<form method="post" action="{{ path('show_json_with_post_value_redirect')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="postButton" value="Post Button med value redirect">
+    (Funkar lokalt men visar value: null. Via stud-servern görs en fetch och visar även här en länk men som inte är klickbar)
+</form>
+{% endblock %}
