@@ -1,0 +1,60 @@
+{% extends "testbase.html.twig" %}
+
+{% block title %}Test 5{% endblock %}
+
+{% block body %}
+
+<h2>Testsida 5</h2>
+
+<h4>a href-länk som renderar en twig och skickar med ett dataobjekt som skrivs ut</h4>
+
+<a href="{{ path('show_twig_with_get')}}">Show Twig with get (funkar lokalt och stud-server)</a>
+
+<br>
+<br>
+
+<a href="{{ path('show_twig_with_get_value', {value: 10}) }}">Show Twig with get and parameter (funkar lokalt och stud-server)</a>
+
+<br>
+<br>
+
+<a href="{{ path('show_twig_with_post')}}">Show Twig with post (not allowed)</a>
+
+<br>
+<br>
+
+<h4>ett form-formulär med knappar som använder action-attributet till samma path som a href-länkarna ovan. Ska använda en twig-fil för att visa upp meddelanden från data-objektet</h4>
+
+<form method="get" action="{{ path('show_twig_with_get')}}">
+    <input type="submit" name="getButton" value="Get Button">
+    (Funkar lokalt och stud-server)
+</form>
+<br>
+<form method="get" action="{{ path('show_twig_with_get_value')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="getButton" value="Get Button med value">
+    (Funkar lokalt och stud-server, men skickar inte med värdet 10)
+</form>
+<br>
+<form method="post" action="{{ path('show_twig_with_post')}}">
+    <input type="submit" name="postButton" value="Post Button">
+    (Funkar lokalt men inte via stud-servern utan gör en fetch men visar inte upp vyn för twig-filen)
+</form>
+<br>
+<form method="post" action="{{ path('show_twig_with_post_value')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="postButton" value="Post Button med value">
+    (Funkar lokalt men inte via stud-servern utan gör en fetch men visar inte upp vyn för twig-filen. Visar heller inte upp värdet 10.)
+</form>
+<br>
+<form method="post" action="{{ path('show_twig_with_post_redirect')}}">
+    <input type="submit" name="postButton" value="Post Button redirect">
+    (Funkar lokalt och stud-server)
+</form>
+<br>
+<form method="post" action="{{ path('show_twig_with_post_value_redirect')}}">
+    <input type="number" name="value" value="10" hidden>
+    <input type="submit" name="postButton" value="Post Button med value redirect">
+    (Funkar lokalt och stud-server, men skickar inte med värdet 10)
+</form>
+{% endblock %}
