@@ -1,0 +1,27 @@
+{% extends "testbase.html.twig" %}
+
+{% block title %}Test{% endblock %}
+
+{% block body %}
+
+    <h4>a href:</h4>
+
+    <a href="{{ path('api_start_post') }}">startOne</a><br>
+    <br>
+    <br>
+
+    <h4> javascript onClick </h4>
+    <form method="post">
+        <input type="submit" name="do_it" value="GETJsonOne"
+        onClick="this.form.action='{{ path('api_start_post') }}';"
+    >
+    </form>
+
+    <br>
+    <br>
+
+    <h4>html-form med post</h4>
+    <form method="post" action="{{ path('api_start_post') }}">
+        <input type="submit" name="do_it" value="GETJsonOne">
+    </form>
+{% endblock %}
