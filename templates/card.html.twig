@@ -5,6 +5,28 @@
 {% block body %}
     <h1>Card</h1>
 
-    <h3>Om kortsidan</h3>
+    <h3>Om klasserna för Card-sidan</h3>
+
+    <picture class="picture-center">
+        <img src="{{ asset('images/uml_card.png') }}" alt="UML för Card">
+        <figcaption>UML-diagram för klasserna som hör till Card-sidan</figcaption>
+    </picture>
+
+    <h4>Card</h4>
+    Initierar varje enskilt kort. Använder klassvariablerna $suit, för att ange vilken av färgerna som kortet har 
+    (Hjärter, Spader, Ruter eller Klöver), och $rank för att vilken valör (Ess – Kung). 
+    Både $suit och $rank lagras som siffor och när ett Card-objekt skapas så tilldelas den en färg (0-3) och ett värde (0-12).
+
+    <h4>CardGraphic</h4>
+    Ärver från Card och skriver ut en grafisk symbol för varje färg samt värde genom att koppla kortobjektets färg och värde mot respektive array.
+
+    <h4>CardHand</h4>
+    CardHand använder sig av klassen Card för att skapa en hand med valfritt antal kort och bildar då en composition. 
+    De Card-objekt som hör till ett visst CardHand-objekt lagras i en array.
+
+    <h4>DeckOfCards</h4>
+    DeckOfCards använder sig av subklassen CardGraphic för att visa upp ett grafiskt kort med symboler och detta skapar då en 
+    composition mellan dessa två klasser. CardGraphic-objekten sparas i en array och bildar en lek med 52 unika kort som sedan 
+    sparas i en session för att kunna blandas, sorteras och delas ur.
 
 {% endblock %}
