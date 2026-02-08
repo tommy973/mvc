@@ -1,0 +1,422 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Holtwood+One+SC&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
+
+/**
+ * Initiate the CSS base and reset/normalize some items.
+ */
+
+/**
+ * Apply a natural box layout model to all elements, but allowing components
+ * to change.
+ * https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+ html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/**
+* Parts from
+* https://github.com/necolas/normalize.css/blob/master/normalize.css
+*/
+html {
+    line-height: 1.15;
+}
+
+body {
+    margin: 0;
+    overflow-y: scroll;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    margin: 0 auto;
+    width: 900px;
+    margin-bottom: 5em;
+}
+
+h1 {
+    font-size: 2.488em;
+    border-bottom: 4px double #ccc;
+    padding-left: 0.5em;
+}
+
+h2 {
+    font-size: 2.074em;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 1.728em;
+    padding-left: 0.5em;
+}
+
+h4 {
+    font-size: 1.44em;
+    padding-left: 0.5em;
+}
+
+h5 {
+    font-size: 1.2em;
+    padding-left: 0.5em;
+}
+
+p {
+    padding-left: 1em;
+    padding-bottom: 1em;
+}
+
+figcaption {
+    text-align: left;
+    margin-left: 1em;
+    font-style: italic;
+}
+
+.mainheader {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    color: #333;
+    position: relative;
+}
+
+.cardheader {
+    width: 100%;
+    height: 250px;
+    background-color: #ccc;
+    color: #333;
+    position: relative;
+}
+
+.header-image {
+    width: 100%;
+    height: 150px; 
+}
+
+.mainheadertitle {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+    margin-right: 20%;
+    margin-top: 100px;
+    color: #eee;
+    display: inline-block;
+    position: relative;
+    top: -250px;
+    left: 70%;
+}
+
+.cardheadertitle {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+    margin-right: 20%;
+    margin-top: 100px;
+    color: #eee;
+    display: inline-block;
+    position: relative;
+    top: -274px;
+    left: 70%;
+}
+
+.mainmenu,
+.submenu {
+    width: 100%;
+}
+
+.mainmenulist,
+.submenulist {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.mainmenulist li,
+.submenulist li {
+    margin-top: -0.3em;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.mainmenulist a,
+.submenulist a {
+    text-decoration: none;
+    font-family: "Josefin Slab", serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: x-large;
+    color: #333;
+}
+
+.mainmenulist a:hover,
+.submenulist a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+.submenu {
+    background-color: #ccc;
+    height: 2em;
+    margin-top: -0.5em;
+    border-top: 1px dotted #333;
+}
+
+footer {
+    margin-top: auto;
+    height: 100px;
+    background-color: #ccc;
+    text-align: center;
+}
+
+.footer-info {
+    margin-top: 35px;
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+}
+
+.picture-right {
+    float: right;
+    margin-left: 1em;
+}
+
+.picture-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.presentation-picture {
+    width: 400px;
+}
+
+.report-article {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.whole-width {
+    grid-column: 1/3;
+}
+
+.report-left-col {
+    grid-column: 1/2;
+}
+
+.report-right-col {
+    grid-column: 2/3;
+}
+
+.report-right-col,
+.report-left-col {
+    padding-top: 1em;
+}
+
+.reportmenulist {
+    margin-left: -1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.reportmenulist li {
+    margin-top: 0.5em;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.reportmenulist a {
+    text-decoration: none;
+    font-family: "Josefin Slab", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: large;
+    color: #333;
+}
+
+.reportmenulist a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+.about-article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.whole-width {
+    grid-column: 1/3;
+}
+
+.about-left-col {
+    grid-column: 1/2;
+}
+
+.about-right-col {
+    grid-column: 2/3;
+}
+
+.about-right-col,
+.about-left-col {
+    padding-top: 1em;
+}
+
+.about-picture {
+    width: 400px;
+    padding-top: 1em;
+}
+
+.api-row {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 300px 600px;
+    color: #333;
+}
+
+.row-header {
+    grid-column: 1/3;
+}
+
+.row-header h3 {
+    background-color: #bbb;
+    padding-left: 3em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.row-link {
+    grid-column: 1/2;
+    margin-left: 3em;
+}
+
+.row-link a {
+    text-decoration: none;
+    font-size:large;
+    color: #333;
+}
+
+.row-link a:hover {
+    text-decoration: underline;
+}
+
+.row-description {
+    grid-column: 2/3;
+}
+
+/* Flash-message */
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+/* Card-design */
+
+.cardcontainer {
+    width: 860px;
+    margin-left: 2em;
+    display: grid;
+    grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px;
+}
+
+.singlecardcontainerred {
+    width: 60px;
+    height: 100px;
+    background-color: #eee;
+    border-radius: 10%;
+    margin-bottom: 1em;
+    color: red;
+    border: 1px solid;
+    padding: 3px;
+}
+
+.singlecardcontainerblack {
+    width: 60px;
+    height: 100px;
+    background-color: #eee;
+    border-radius: 10%;
+    margin-bottom: 1em;
+    color: #333;
+    border: 1px solid;
+    padding: 3px;
+}
+
+.upperleftrank {
+    top: 5px;
+    left: 5px;
+}
+
+.upperleftsuit {
+    top: 15px;
+    left: 5px;
+
+}
+
+.lowerrightrank {
+    transform: rotate(-180deg);
+    bottom: 5px;
+    right: 5px;
+}
+
+.lowerrightsuit {
+    transform: rotate(-180deg);
+    bottom: 15px;
+    right: 5px;
+}
+
+
+/* Deal card form style */
+
+.playercardform {
+    width: 300px;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    padding-left: 2em;
+    row-gap: 1em;
+}
+
+.playercardform label {
+    grid-column: 1/2;
+    height: 2.5em;
+    font-size: large;
+    margin-top: 0.5em;
+}
+
+.inputfield {
+    grid-column: 2/3;
+    height: 2.5em;
+    font-size: large;
+}
+
+.inputbutton {
+    grid-column: 1/3;
+    height: 2.5em;
+    font-size: large;
+}
