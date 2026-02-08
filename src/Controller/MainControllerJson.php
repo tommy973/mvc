@@ -31,10 +31,16 @@ class MainControllerJson
             'timestamp' => $date->format('Y-m-d H:i:s'),
         ];
 
-        $response = new Response();
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
+        // $response = new Response();
+        // $response->setContent(json_encode($data));
+        // $response->headers->set('Content-Type', 'application/json');
 
+        // return $response;
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
         return $response;
     }
 }
