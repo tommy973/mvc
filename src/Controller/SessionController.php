@@ -15,10 +15,8 @@ class SessionController extends AbstractController
     #[Route("/session", name: "session_info", methods: ['GET'])]
     public function play(
         SessionInterface $session
-    ): Response
-    {
-        // Use AttributeBag to get all the id:s from the session
-        $sessionData = new AttributeBag();
+    ): Response {
+        $sessionData = new AttributeBag(); // Use AttributeBag to get all the id:s from the session
 
         // $currentSession = $request->getSession();
 
@@ -34,9 +32,7 @@ class SessionController extends AbstractController
     public function initCallback(
         Request $request,
         SessionInterface $session
-    ): Response
-    {
-
+    ): Response {
         $session->clear();
 
         $this->addFlash(
