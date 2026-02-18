@@ -56,7 +56,7 @@ class MainController extends AbstractController
     }
 
     #[Route("/api/", name:"api_index")]
-    public function api_index(): Response
+    public function apiIndex(): Response
     {
         return $this->render('api.html.twig');
     }
