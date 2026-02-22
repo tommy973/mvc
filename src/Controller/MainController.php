@@ -49,13 +49,13 @@ class MainController extends AbstractController
             'fontcolor' => $colorwheel[$fontcolornumber],
             'fontcolorname' => $colorwheelname[$fontcolornumber],
             'bodycolor' => $colorwheel[$bodycolornumber],
-            'bodycolorname' => $colorwheelname[$bodycolornumber]
+            'bodycolorname' => $colorwheelname[$bodycolornumber],
         ];
 
         return $this->render('lucky.html.twig', $data);
     }
 
-    #[Route("/api/", name:"api_index")]
+    #[Route("/api/", name: "api_index")]
     public function apiIndex(): Response
     {
         return $this->render('api.html.twig');
