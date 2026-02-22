@@ -16,7 +16,56 @@
             En sida som visar upp dagens citat, tillsammans med dagens datum.
         </div>
     </div>
-    
+    <div class="api-row">
+        <div class="row-header">
+            <h3>Kmom02</h3>
+        </div>
+        <div class="row-link json-kmom02">
+            <a href="{{ path('jsondeck') }}">JSONDeck</a>
+        </div>
+        <div class="row-description json-kmom02">
+            Visar upp en kortlek som är sorterad i efter färg och värde.
+        </div>
+        <div class="row-link json-kmom02">
+            <a href="{{ path('jsonshuffle') }}">JSONShuffle</a>
+        </div>
+        <div class="row-description json-kmom02">
+            Visar upp en kortlek som är blandad.
+        </div>
+        <div class="row-link json-kmom02">
+            <a href="{{ path('jsondraw') }}">JSONDraw</a>
+        </div>
+        <div class="row-description json-kmom02">
+            Drar ett kort från leken.
+        </div>
+        <div class="row-link json-kmom02">
+            <form method="post" action="{{ path('jsondraw') }}" class="api-form">
+                <div class="api-sub-header">JSONDraw</div>
+                <label for="nr_of_cards" class="api-label">Kort:</label>
+                <input class="api-field" type="number" name="num_cards" min="1" max="52" value="1">
+                <input class="api-button" type="submit" name="do_it" value="Dra kort">
+            </form>
+        </div>
+        <div class="row-description json-kmom02">
+            Drar valfritt antal kort ur leken.<br>
+            Du väljer antalet kort och trycker på knappen "Dra kort".
+        </div>
+        <div class="row-link json-kmom02-last">
+            <form method="post" action="{{ path('jsondeal') }}" class="api-form">
+                <div class="api-sub-header">JSONDeal</div>
+                <label for="nr_of_cards" class="api-label">Spelare:</label>
+                <input class="api-field" type="number" name="num_players" min="1" max="52" value="1">
+                <label for="nr_of_cards" class="api-label">Kort:</label>
+                <input class="api-field" type="number" name="num_cards" min="1" max="52" value="1">
+                <input class="api-button" type="submit" name="do_it" value="Dela kort">
+            </form>
+        </div>
+        <div class="row-description json-kmom02-last">
+            Delar ut kort till ett antal spelare.<br>
+            Du väljer antalet kort och antalet spelare.<br>
+            Tryck sedan på knappen "Dela kort" för att göra utdelningen.
+        </div>
+    </div>
 </article>
     
 {% endblock %}
