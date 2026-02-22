@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,7 +78,7 @@ class DeckController extends AbstractController
         if ($cardlimit == 0) {
             throw new \Exception("Leken är slut, du kan inte dra fler kort.");
         }
-        
+
         $singleCard = $deck->drawSingleCard();
 
         $drawnCard = [];
@@ -89,7 +87,7 @@ class DeckController extends AbstractController
         $data = [
             'deckofcards' => $deck->getDeckAsStringArray(),
             'drawncard' => $drawnCard,
-            'numberofcards' => $deck->numberOfCardsInDeck()
+            'numberofcards' => $deck->numberOfCardsInDeck(),
         ];
 
         $session->set("currentdeck", $deck);
@@ -122,7 +120,7 @@ class DeckController extends AbstractController
         $data = [
             'deckofcards' => $deck->getDeckAsStringArray(),
             'drawncard' => $drawnCard,
-            'numberofcards' => $deck->numberOfCardsInDeck()
+            'numberofcards' => $deck->numberOfCardsInDeck(),
         ];
 
         $session->set("currentdeck", $deck);
