@@ -32,7 +32,7 @@ class CardGraphic extends Card
         return $this->rankrep[$this->rank];
     }
 
-    public function getCardAsString() : ?string
+    public function getCardAsString(): ?string
     {
         $currentcard = $this->rankrep[intval($this->rank)] . $this->suitrep[intval($this->suit)];
         return $currentcard;
