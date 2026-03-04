@@ -74,6 +74,54 @@
                 Har fått det mesta att fungera som jag ville, dock inte som jag tänkt mig från början men ska försöka lösa detta framöver.
                 Nu vidare till nästa kursmoment.
             </p>
+            <h3 id="kmom02">Kmom02</h3>
+            <p>
+                Det var vid det här kursmomentet som jag fastnade förra gången men som jag nu har arbetat mig igenom från början och 
+                nu har lyckats göra färdigt. Då det var i slutet av uppgiften där bland annat API-delen krånglade och gav olika 
+                resultat mellan min lokala utvecklingsmiljö och studentservern. Även stylen med CSS blev annorlunda mellan de två 
+                miljöerna vilket jag då inte fick någon lösning på.<br>
+                Nu, efter ett nytt försök med kursen, så har jag fått ordning på allt så nu fungerar alla knappar med mera som det ska.
+            </p>
+            <p>
+                Inför kursmomentets uppgift så kände jag mig väl förberedd då jag arbetat igenom phpguiden och, tillsammans med filmerna 
+                från kursen, gått igenom övningen med tärningsspelet. Mycket av kunskapen därifrån kunde jag sedan applicera på strukturen 
+                för kortleken, klasserna som behövs och vilka routes som krävs för att applikationen skulle kunna rulla.
+            </p>
+            <p>
+                Jag byggde upp de olika klasserna med inspiration från tärningsspelet där jag har en klass för enskilda kort, 
+                en klass för en korthand, en klass för själva kortleken och slutligen en klass för den grafiska vyn av korten. 
+                Vidare så skapade jag en ny controller för alla routes som har med kortleken att göra. Detta är en av de positiva 
+                delarna jag upplevt hittills med Symfony. Möjligheten att på ett smidigt sätt kunna dela upp routsen för webbsidan 
+                på ett logiskt och strukturerat sätt där man enkelt kan hitta det man söker. Gjorde även en ny twig-mall, då kort-sidan 
+                skulle ha ett antal undersidor, och som skapar en undermeny till huvudmenyn.
+            </p>
+            <p>
+                När jag gjorde uppgiften med att dela ut kortleken så ville jag utmana mig själv för att försöka få till kort med 
+                hjälp av CSS som ser ut som ”riktiga” kort. Det tog en stund men jag lyckades få till något som jag är ganska nöjd över. 
+                Skulle gå att bygga vidare med exempelvis olika bilder på knekt, dam, kung och så vidare.
+            </p>
+            <p>
+                Genom uppgiften så har jag arbetat med några av de objektorienterade konstruktionerna och då främst med arv och komposition. 
+                <b>Arv</b> är då en subklass får samma egenskaper som en basklass men kan sedan lägga till specifika egenskaper. 
+                Ett exempel från uppgiften är att klassen CardGraphic ärver från klassen Card och får då tillgång till samma  
+                och klassvariabler.<br>
+                DeckOfCards och CardHand i sin tur är två exempel på klasser som använder <b>komposition</b> då de består av ett antal Card-objekt. 
+            </p>
+            <p>
+                Det finns ytterligare två typer av konstruktioner som tas upp i kursmomentet men som jag inte använt mig av i uppgiften 
+                och det är Interface och Trait.<br>
+                <b>Interface</b> fungerar som ett sorts API för en klass. Användaren sätter upp ett interface hos en klass och visar då 
+                på vilka metoder som utlovas från klassen. Detta är användbart då man som utvecklare vet hur man kan hantera en viss 
+                klass och som man kan göra med den.<br>
+                I PHP kan en subklass ärva från maximalt en basklass och här finns <b>Traits</b> till hjälp. Istället för att ärva från 
+                flera klasser så kan en klass kopiera in vissa metoder från andra klasser in i sin egen kod och därefter använda 
+                dessa metoder på egen hand.
+            </p>
+            <p>
+                Kursmomentet har jag upplevt som ganska omfattande och mycket nytt men det börjar sätta sig igen. Lärdomen för detta 
+                kursmoment är att om jag inte får saker att fungera så testa att göra om det en gång till. Fungerar det inte då så testa 
+                en gång till. Tillslut så fungerar det.
+            </p>
         </div>
     </article>
 {% endblock %}
