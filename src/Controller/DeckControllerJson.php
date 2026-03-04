@@ -39,7 +39,7 @@ class DeckControllerJson
         return $response;
     }
 
-    #[Route("/api/deck/shuffle", name: "jsonshuffle", methods: ['POST'])]
+    #[Route("/api/deck/shuffle", name: "jsonshuffle", methods: ['GET'])]
     public function jsonShuffle(
         Request $request,
         SessionInterface $session
@@ -62,7 +62,9 @@ class DeckControllerJson
         return $response;
     }
 
-    #[Route("/api/deck/draw/{number<\d+>?1}", name: "jsondraw", methods: ['POST'])]
+    // #[Route("/api/deck/draw", name: "jsondrawsingle", mehtods:)]
+    
+    #[Route("/api/deck/draw/{number<\d+>?1}", name: "jsondraw", methods: ['POST', 'GET'])]
     public function jsonDraw(
         Request $request,
         SessionInterface $session,
