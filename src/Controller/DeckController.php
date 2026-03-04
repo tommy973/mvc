@@ -49,7 +49,7 @@ class DeckController extends AbstractController
     public function shuffledDeckOfCards(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards();
+        $deck = $session->get("currentdeck");
 
         $deck->shuffleDeck();
 
