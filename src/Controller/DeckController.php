@@ -51,6 +51,12 @@ class DeckController extends AbstractController
     ): Response {
         $deck = $session->get("currentdeck");
 
+        if (empty($deck)) {
+            $deck = new DeckOfCards();
+        } else {
+            $deck->sortDeck();
+        }
+
         $deck->shuffleDeck();
 
         $data = [
