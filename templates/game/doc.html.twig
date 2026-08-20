@@ -1,0 +1,65 @@
+{% extends "basegame.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+    <h1>Game Documentation</h1>
+
+    <h3>Flödesschema</h3>
+
+    <picture class="picture-center">
+        <img src="{{ asset('img/kmom03_flow.png') }}" alt="Flödesschema för spelet 21">
+        <figcaption>Flödesschema för kortspelet 21</figcaption>
+    </picture>
+
+    <h3>Pseudokod</h3>
+
+    <ul>
+    <li><code>player_stop</code> : En flagga för att visa när spelaren är nöjd och inte vill dra ett kort till. Default är FALSE.</li>
+    <li><code>bank_stop</code> : En flagga för att visa när banken är nöjd och inte vill dra ett kort till. Default är FALSE.</li>
+    <li><code>playera_sum</code> : En variabel som sparar summan av alla kort som spelaren dragit. Startar på 0.</li>
+    <li><code>banks_sum</code> : En variabel som sparar summan av alla kort som banken dragit. Startar på 0.</li>
+    </ul>
+
+    <code>
+    <pre>
+    WHILE player_stop IS FALSE
+        DRAW A CARD
+        IF players_sum IS EQUAL TO OR LESS THEN 21
+            IF PLAYER WANTS TO DRAW ONE MORE CARD
+                DRAW A CARD
+            ELSE
+                player_stop IS SET TO TRUE
+            IF-ELSE-END
+        ELSE
+            BANK WINS
+        IF-ELSE-END
+    WHILEEND
+
+    WHILE bank_stop IS FALSE
+        DRAW A CARD
+        IF banks_sum IS EQUAL TO OR LESS THEN 21
+            IF banks_sum IS LESS THEN 17
+                DRAW A CARD
+            ELSE
+                bank_stop IS SET TO TRUE
+            IF-ELSE-END
+        ELSE IF banks_sum IS MORE THEN 21
+            PLAYER WINS
+        IF-ELSE-END
+    WHILEEND
+
+    IF players_sum IS GREATER THEN banks_sum
+        PLAYER WINS
+    ELSE
+        BANK WINS
+    IF-ELSE-END 
+    </pre>
+    </code>
+
+    <h3>Om klasserna för Game-sidan</h3>
+
+    <h4>CardHand</h4>
+    
+
+{% endblock %}

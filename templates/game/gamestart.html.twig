@@ -1,0 +1,12 @@
+{% extends "basegame.html.twig" %}
+
+{% block title %}Spela 21{% endblock %}
+
+{% block body %}
+    <h1>Spela 21</h1>
+
+    <a href="{{ path('game_init') }}">Starta 21</a>
+
+    {{ dump(gamestarted) }}
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends "basegame.html.twig" %}
+
+{% block title %}Spela 21{% endblock %}
+
+{% block body %}
+    <h1>Spela 21</h1>
+
+    {% if (loss == true) %}
+        {{ outcome }}
+    {% else %}
+
+        <p>Nu har vi startat spelet</p>
+
+        {% if (gamephase == 'playersturn') %}
+            <a href="{{ path('game_drawcard') }}"><div class="game-button">dra kort</div></a>
+            <a href="{{ path('game_pass') }}"><div class="game-button">nöjd</div></a>
+
+            <div class="cardcontainer">
+                {% for value in playerdrawncards %}
+                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                        <div class="singlecardcontainerred">
+                    {% else %}
+                        <div class="singlecardcontainerblack">
+                    {% endif %}
+                        <div class="singlecardborder">
+                            <div class="upperleftrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                            <div class="upperleftsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <br>
+                            <div class="lowerrightsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <div class="lowerrightrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="player-sum">
+                <h4>Summa: {{ playersum }}</h4>
+            </div>
+        {% endif %}
+
+        {% if (gamephase == 'banksturn') %}
+            {% if (banksum > 16 and banksum < 22) %}
+                <a href="{{ path('game_pass') }}"><div class="game-button">Nästa</div></a>
+            {% else %}
+                <a href="{{ path('game_drawcard') }}"><div class="game-button">Nästa</div></a>
+            {% endif %}
+
+            <div class="cardcontainer">
+                {% for value in bankdrawncards %}
+                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                        <div class="singlecardcontainerred">
+                    {% else %}
+                        <div class="singlecardcontainerblack">
+                    {% endif %}
+                        <div class="singlecardborder">
+                            <div class="upperleftrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                            <div class="upperleftsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <br>
+                            <div class="lowerrightsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <div class="lowerrightrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="player-sum">
+                <h4>Summa: {{ banksum }}</h4>
+            </div>
+
+            <div class="cardcontainer">
+                {% for value in playerdrawncards %}
+                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                        <div class="singlecardcontainerred">
+                    {% else %}
+                        <div class="singlecardcontainerblack">
+                    {% endif %}
+                        <div class="singlecardborder">
+                            <div class="upperleftrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                            <div class="upperleftsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <br>
+                            <div class="lowerrightsuit">
+                                {{ value[-1:] }}
+                            </div>
+                            <div class="lowerrightrank">
+                                {% if value|length == 2 %}
+                                {{ value|slice(0, 1) }}
+                                {% else %}
+                                {{ value|slice(0, 2) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="player-sum">
+                <h4>Summa: {{ playersum }}</h4>
+            </div>
+        {% endif %}
+
+        {% if (gamephase == 'decide') %}
+            <h3>{{ winner }} vann matchen </h3>
+        {% endif %}
+    {% endif %}
+
+
+    {{ dump(gamedeck) }}
+    {{ dump(playerhand) }}
+    {{ dump(bankhand) }}
+
+{% endblock %}
