@@ -21,4 +21,14 @@ class CardHand
         }
         return $values;
     }
+
+    public function getHandSum(): int
+    {
+        $sum = 0;
+        foreach ($this->hand as $card) {
+            $sum += (int) $card->getRank() + 1;
+        }
+
+        return $sum;
+    }
 }
