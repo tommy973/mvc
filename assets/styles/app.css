@@ -460,3 +460,16 @@ footer {
     height: 2.5em;
     font-size: large;
 }
+
+/* Game styles */
+
+.game-button {
+    width: 4em;
+    height: 2em;
+    background-color: green;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8%;
+    text-align: center;
+    text-decoration: none;
+}
