@@ -2,11 +2,11 @@
 
 namespace App\Card;
 
-// use App\Card\Card;
+use App\Card\Card;
 
 use App\Card\CardGraphic;
 
-// use App\Card\CardHand;
+use App\Card\CardHand;
 
 class DeckOfCards
 {
@@ -18,7 +18,8 @@ class DeckOfCards
     public function __construct()
     {
         $suits = ['0', '1', '2', '3'];
-        $ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        // $ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        $ranks = ['0', '9'];
 
         for ($i = 0; $i < count($suits); $i++) {
             for ($j = 0; $j < count($ranks); $j++) {
@@ -73,10 +74,34 @@ class DeckOfCards
     public function drawSingleCard()
     {
         $randomCard = random_int(0, $this->numberOfCardsInDeck() - 1);
-
+        // $randomCard = 2;
         $currentCard = $this->deck[$randomCard];
 
         array_splice($this->deck, $randomCard, 1);
         return $currentCard;
+    }
+
+    public function removeCards(CardHand $handToRemove)
+    {
+        $removeCards = [];
+        $counter = 0;
+        foreach ($this->getDeck() as $deckCard) {
+            echo $counter;
+            foreach ($handToRemove->getHand() as $card) {
+                if (($card->getSuit() == $deckCard->getSuit()) and ($card->getRank() == $deckCard->getRank())) {
+                    $removeCards[] = $counter;
+                }
+            }
+            $counter += 1;
+        }
+
+        for ($i = count($removeCards) - 1; $i >= 0; $i--) {
+            array_splice($this->deck, $removeCards[$i], 1);
+        }
+    }
+
+    public function getDeck()
+    {
+        return $this->deck;
     }
 }
