@@ -31,4 +31,14 @@ class CardHand
 
         return $sum;
     }
+
+    public function numberOfCardsInHand(): int
+    {
+        return count($this->hand);
+    }
+
+    public function getHand(): array
+    {
+        return $this->hand;
+    }
 }
