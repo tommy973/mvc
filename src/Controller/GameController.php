@@ -52,7 +52,13 @@ class GameController extends AbstractController
     public function gameInit(
         SessionInterface $session
     ): Response {
-        $gamedeck = new DeckOfCards();
+        // $loss = $session->get("loss");
+        $gamedeck = $session->get("gamedeck");
+
+        if (empty($gamedeck)) {
+            $gamedeck = new DeckOfCards();
+        }
+
         $playerHand = new CardHand();
         $bankHand = new CardHand();
 
@@ -70,31 +76,37 @@ class GameController extends AbstractController
         SessionInterface $session
     ): Response {
         $gamephase = $session->get("gamephase");
+        $gamedeck = $session->get("gamedeck");
+        $playerHand = $session->get("playerhand");
+        $bankHand = $session->get("bankhand");
+
         $outcome = "";
         $loss = false;
+        $winner ="";
 
         $playerHand = $session->get("playerhand");
         $playerHandString = $playerHand->getHandAsString();
         $playerHandSum = $playerHand->getHandSum();
         if ($playerHandSum > 21) {
             $loss = true;
-            $outcome = "Du fick över 21. Banken vinner.";
+            $outcome = "Du fick över 21. Banken vann omgången.";
         }
 
-        $bankHand = $session->get("bankhand");
         $bankHandString = $bankHand->getHandAsString();
         $bankHandSum = $bankHand->getHandSum();
         if ($bankHandSum > 21) {
             $loss = true;
-            $outcome = "Banken fick över 21. Du vann vinner.";
+            $outcome = "Banken fick över 21. Du vann omgången.";
         }
 
         // Jämför om det är decide
         if ($gamephase == "decide") {
             if ($playerHandSum > $bankHandSum) {
-                $outcome = "Du";
+                $winner = "player";
+                $outcome = "Grattis, Du vann den här omgången.";
             } else {
-                $outcome = "Banken";
+                $winner = "bank";
+                $outcome = "Aj då, Banken vann den här omgången.";
             }
         }
 
@@ -106,6 +118,7 @@ class GameController extends AbstractController
             'gamephase' => $gamephase,
             'outcome' => $outcome,
             'loss' => $loss,
+            'winner' => $winner,
             'gamedeck' => $session->get("gamedeck"),
             'playerhand' => $session->get("playerhand"),
             'bankhand' => $session->get("bankhand"),
@@ -123,6 +136,15 @@ class GameController extends AbstractController
         $gamephase = $session->get("gamephase");
         // Draw a card
         $gameDeck = $session->get("gamedeck");
+        $playerHand = $session->get("playerhand");
+        $bankHand = $session->get("bankhand");
+
+        if ($gameDeck->numberOfCardsInDeck() <= 0) {
+            $gameDeck = new DeckOfCards();
+            $gameDeck->removeCards($playerHand);
+            $gameDeck->removeCards($bankHand);
+        }
+
         $drawnCard = $gameDeck->drawSingleCard();
 
         // Lägg kort i spelarens hand om det är spelarens tur
@@ -161,15 +183,41 @@ class GameController extends AbstractController
         SessionInterface $session
     ): Response {
         $gamephase = $session->get("gamephase");
+        $loss = $session->get("loss");
         
-        // Om spelaren är nöjd så ändras det till bankens tur
-        if ($gamephase == "playersturn") {
-            $session->set("gamephase", "banksturn");
+        // Om jämförelsen är gjord så startas en ny runda
+        if ($gamephase == "decide") {
+            $session->set("gamephase", "playersturn");
+            $newPlayerHand = new CardHand();
+            $newBankHand = new CardHand();
+            $session->set("playerhand", $newPlayerHand);
+            $session->set("bankhand", $newBankHand);
         }
 
         // Om banken är nöjd så ändras det till att jämföra summor
-        if ($gamephase == "banksturn") {
-            $session->set("gamephase", "decide");
+        else if ($gamephase == "banksturn") {
+            if ($loss == true) {
+                $session->set("gamephase", "playersturn");
+                $newPlayerHand = new CardHand();
+                $newBankHand = new CardHand();
+                $session->set("playerhand", $newPlayerHand);
+                $session->set("bankhand", $newBankHand);
+            } else {
+                $session->set("gamephase", "decide");
+            }
+        }
+
+        // Om spelaren är nöjd så ändras det till bankens tur
+        else if ($gamephase == "playersturn") {
+            if ($loss == true) {
+                $session->set("gamephase", "playersturn");
+                $newPlayerHand = new CardHand();
+                $newBankHand = new CardHand();
+                $session->set("playerhand", $newPlayerHand);
+                $session->set("bankhand", $newBankHand);
+            } else {
+                $session->set("gamephase", "banksturn");
+            }
         }
 
         return $this->redirectToRoute('game_play');
