@@ -63,7 +63,7 @@ class DeckControllerJson
     }
 
     // #[Route("/api/deck/draw", name: "jsondrawsingle", mehtods:)]
-    
+
     #[Route("/api/deck/draw/{number<\d+>?1}", name: "jsondraw", methods: ['POST', 'GET'])]
     public function jsonDraw(
         Request $request,
