@@ -35,13 +35,15 @@ class GameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game_started = $session->get("game_started");
+        $session->set("playerpoints", 0);
+        $session->set("bankpoints", 0);
 
         if (empty($game_started)) {
             $game_started = false;
         }
 
         $data = [
-            'gamestarted' => $game_started
+            'gamestarted' => $game_started,
         ];
 
         return $this->render('game/gamestart.html.twig', $data);
@@ -54,9 +56,19 @@ class GameController extends AbstractController
     ): Response {
         // $loss = $session->get("loss");
         $gamedeck = $session->get("gamedeck");
+        $playerPoints = $session->get("playerpoints");
+        $bankPoints = $session->get("bankpoints");
 
         if (empty($gamedeck)) {
             $gamedeck = new DeckOfCards();
+        }
+
+        if (empty($playerPoints)) {
+            $playerPoints = 0;
+        }
+
+        if (empty($bankPoints)) {
+            $bankPoints = 0;
         }
 
         $playerHand = new CardHand();
@@ -65,6 +77,8 @@ class GameController extends AbstractController
         $session->set("gamedeck", $gamedeck);
         $session->set("playerhand", $playerHand);
         $session->set("bankhand", $bankHand);
+        $session->set("playerpoints", $playerPoints);
+        $session->set("bankpoints", $bankPoints);
         $session->set("gamephase", "playersturn");
 
         return $this->redirectToRoute('game_play');
@@ -79,10 +93,12 @@ class GameController extends AbstractController
         $gamedeck = $session->get("gamedeck");
         $playerHand = $session->get("playerhand");
         $bankHand = $session->get("bankhand");
+        $playerPoints = $session->get("playerpoints");
+        $bankPoints = $session->get("bankpoints");
 
         $outcome = "";
         $loss = false;
-        $winner ="";
+        $winner = "";
 
         $playerHand = $session->get("playerhand");
         $playerHandString = $playerHand->getHandAsString();
@@ -90,6 +106,7 @@ class GameController extends AbstractController
         if ($playerHandSum > 21) {
             $loss = true;
             $outcome = "Du fick över 21. Banken vann omgången.";
+            $bankPoints += 1;
         }
 
         $bankHandString = $bankHand->getHandAsString();
@@ -97,6 +114,7 @@ class GameController extends AbstractController
         if ($bankHandSum > 21) {
             $loss = true;
             $outcome = "Banken fick över 21. Du vann omgången.";
+            $playerPoints += 1;
         }
 
         // Jämför om det är decide
@@ -104,11 +122,16 @@ class GameController extends AbstractController
             if ($playerHandSum > $bankHandSum) {
                 $winner = "player";
                 $outcome = "Grattis, Du vann den här omgången.";
+                $playerPoints += 1;
             } else {
                 $winner = "bank";
                 $outcome = "Aj då, Banken vann den här omgången.";
+                $bankPoints += 1;
             }
         }
+
+        $session->set("playerpoints", $playerPoints);
+        $session->set("bankpoints", $bankPoints);
 
         $data = [
             'playerdrawncards' => $playerHandString,
@@ -119,12 +142,14 @@ class GameController extends AbstractController
             'outcome' => $outcome,
             'loss' => $loss,
             'winner' => $winner,
+            'playerpoints' => $playerPoints,
+            'bankpoints' => $bankPoints,
             'gamedeck' => $session->get("gamedeck"),
             'playerhand' => $session->get("playerhand"),
             'bankhand' => $session->get("bankhand"),
-            'gamestarted' => $session->get("gamestarted")
+            'gamestarted' => $session->get("gamestarted"),
         ];
-        
+
         return $this->render('game/gameplay.html.twig', $data);
     }
 
@@ -162,7 +187,7 @@ class GameController extends AbstractController
         }
 
 
-        
+
         // $playerHand = $session->get("playerhand");
         // $bankHand = $session->get("bankhand");
 
@@ -184,7 +209,7 @@ class GameController extends AbstractController
     ): Response {
         $gamephase = $session->get("gamephase");
         $loss = $session->get("loss");
-        
+
         // Om jämförelsen är gjord så startas en ny runda
         if ($gamephase == "decide") {
             $session->set("gamephase", "playersturn");
@@ -195,7 +220,7 @@ class GameController extends AbstractController
         }
 
         // Om banken är nöjd så ändras det till att jämföra summor
-        else if ($gamephase == "banksturn") {
+        elseif ($gamephase == "banksturn") {
             if ($loss == true) {
                 $session->set("gamephase", "playersturn");
                 $newPlayerHand = new CardHand();
@@ -208,7 +233,7 @@ class GameController extends AbstractController
         }
 
         // Om spelaren är nöjd så ändras det till bankens tur
-        else if ($gamephase == "playersturn") {
+        elseif ($gamephase == "playersturn") {
             if ($loss == true) {
                 $session->set("gamephase", "playersturn");
                 $newPlayerHand = new CardHand();
