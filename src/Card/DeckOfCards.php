@@ -3,9 +3,7 @@
 namespace App\Card;
 
 use App\Card\Card;
-
 use App\Card\CardGraphic;
-
 use App\Card\CardHand;
 
 class DeckOfCards
@@ -18,8 +16,8 @@ class DeckOfCards
     public function __construct()
     {
         $suits = ['0', '1', '2', '3'];
-        // $ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-        $ranks = ['0', '9'];
+        $ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        // $ranks = ['0', '9'];
 
         for ($i = 0; $i < count($suits); $i++) {
             for ($j = 0; $j < count($ranks); $j++) {
@@ -81,6 +79,9 @@ class DeckOfCards
         return $currentCard;
     }
 
+    /**
+     * Removes the cards that are currently drawn by the players
+     */
     public function removeCards(CardHand $handToRemove)
     {
         $removeCards = [];
@@ -100,7 +101,11 @@ class DeckOfCards
         }
     }
 
-    public function getDeck()
+    /**
+     * Function to get the current Deck as an array
+     * @return array The current deck
+     */
+    public function getDeck(): array
     {
         return $this->deck;
     }
