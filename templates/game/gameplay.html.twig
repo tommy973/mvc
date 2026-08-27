@@ -5,67 +5,92 @@
 {% block body %}
     <h1>Spela 21</h1>
 
-    {% if (loss == true) %}
-        <h3>{{ outcome }}</h3><a href="{{ path('game_init') }}"><button class="game-button">Spela igen</button></a>
-    {% else %}
+    <div class="game-layout">
 
         {% if (gamephase == 'playersturn') %}
-            <div class="playersturn-layout">
-                <div class="game-header">
+            {% if (loss == true) %}
+                <div class="game-header-one-button">
+                    <a href="{{ path('game_init') }}"><button class="game-button">Spela igen</button></a>
+                    <div class="sum-style">{{ outcome }}</div>
+            {% else %}
+                <div class="game-header-two-button">
                     <a href="{{ path('game_drawcard') }}"><button class="game-button">Dra ett kort</button></a>
                     <a href="{{ path('game_pass') }}"><button class="game-button">Stanna</button></a>
-                    <span class="sum-style">Din summa: {{ playersum }}</span>
-                </div>
-
-            <div class="cardcontainer">
-                {% for value in playerdrawncards %}
-                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
-                        <div class="singlecardcontainerred">
-                    {% else %}
-                        <div class="singlecardcontainerblack">
-                    {% endif %}
-                        <div class="singlecardborder">
-                            <div class="upperleftrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
-                            </div>
-                            <div class="upperleftsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <br>
-                            <div class="lowerrightsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <div class="lowerrightrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
-                            </div>
-                        </div>
+            {% endif %}
+                    <div class="points">
+                        <div class="subpoints-cat">Dina poäng:</div>
+                        <div class="subpoints"> {{ playerpoints }}</div>
+                        <div class="subpoints-cat">Bankens poäng:</div>
+                        <div class="subpoints"> {{ bankpoints }}</div>
                     </div>
-                {% endfor %}
-            </div>
-            </div>
+                </div>
+                <div class="board-header">
+                    <div class="sum-style">
+                        Din summa: {{ playersum }}
+                    </div>
+                </div>
+                <div class="board-main">
+                    <div class="cardcontainer">
+                        {% for value in playerdrawncards %}
+                            {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                                <div class="singlecardcontainerred">
+                            {% else %}
+                                <div class="singlecardcontainerblack">
+                            {% endif %}
+                                <div class="singlecardborder">
+                                    <div class="upperleftrank">
+                                        {% if value|length == 2 %}
+                                        {{ value|slice(0, 1) }}
+                                        {% else %}
+                                        {{ value|slice(0, 2) }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="upperleftsuit">
+                                        {{ value[-1:] }}
+                                    </div>
+                                    <br>
+                                    <div class="lowerrightsuit">
+                                        {{ value[-1:] }}
+                                    </div>
+                                    <div class="lowerrightrank">
+                                        {% if value|length == 2 %}
+                                        {{ value|slice(0, 1) }}
+                                        {% else %}
+                                        {{ value|slice(0, 2) }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
         {% endif %}
 
         {% if (gamephase == 'banksturn') %}
-            <div class="banksturn-layout">
-                <div class="game-header-bankphase">
-                    {% if (banksum > 16 and banksum < 22) %}
-                        <a href="{{ path('game_pass') }}"><button class="game-button">Nästa</button></a>
-                    {% else %}
-                        <a href="{{ path('game_drawcard') }}"><button class="game-button">Nästa</button></a>
-                    {% endif %}
-                    <span class="sum-style">Bankens summa: {{ banksum }}</span>
-                    <span class="player-sum-bank-phase">Din summa: {{ playersum }}</span>
+            <div class="game-header-one-button">
+            {% if (loss == true) %}
+                <a href="{{ path('game_init') }}"><button class="game-button">Spela igen</button></a>
+                <span class="sum-style">{{ outcome }}</span>
+            {% else %}
+                {% if (banksum > 16 and banksum < 22) %}
+                    <a href="{{ path('game_pass') }}"><button class="game-button">Nästa</button></a>
+                {% else %}
+                    <a href="{{ path('game_drawcard') }}"><button class="game-button">Nästa</button></a>
+                {% endif %}
+            {% endif %}
+                <div class="points">
+                    <div class="subpoints-cat">Dina poäng:</div>
+                    <div class="subpoints"> {{ playerpoints }}</div>
+                    <div class="subpoints-cat">Bankens poäng:</div>
+                    <div class="subpoints"> {{ bankpoints }}</div>
                 </div>
-
-            <div class="bankphase-cardcontainer bankphase-bankcards">
+            </div>
+            <div class="board-header">
+                <div class="sum-style">Bankens summa: {{ banksum }}</div>
+                <div class="sum-style">Din summa: {{ playersum }}</div>
+            </div>
+            <div class="board-main-two-col">
+                <div class="card-container-two-col">
                 {% for value in bankdrawncards %}
                     {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
                         <div class="singlecardcontainerred">
@@ -97,9 +122,9 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
+                </div>
 
-            <div class="bankphase-cardcontainer bankphase-playercards">
+                <div class="card-container-two-col">
                 {% for value in playerdrawncards %}
                     {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
                         <div class="singlecardcontainerred">
@@ -135,93 +160,99 @@
         {% endif %}
 
         {% if (gamephase == 'decide') %}
-            <div class="decide-layout">
-                <div class="game-header-decidephase">
-                    {% if (winner == 'bank') %}
-                        <span class="sum-style winner-style">Bankens summa: {{ banksum }} </span>
-                        <span class="player-sum-decide-phase looser-style">Din summa: {{ playersum }}</span>
-                    {% else %}
-                        <span class="sum-style looser-style">Bankens summa: {{ banksum }} </span>
-                        <span class="player-sum-decide-phase winner-style">Din summa: {{ playersum }}</span>
-                    {% endif %}
+            <div class="game-header-one-button">
+                <a href="{{ path('game_init') }}"><button class="game-button">Spela igen</button></a>
+                <div class="sum-style">{{ outcome }}</div>
+                <div class="points">
+                    <div class="subpoints-cat">Dina poäng:</div>
+                    <div class="subpoints"> {{ playerpoints }}</div>
+                    <div class="subpoints-cat">Bankens poäng:</div>
+                    <div class="subpoints"> {{ bankpoints }}</div>
+                </div>
+            </div>
+
+            <div class="board-header">
+                {% if (winner == 'bank') %}
+                    <div class="sum-style winner-style">Bankens summa: {{ banksum }} </div>
+                    <div class="player-sum-decide-phase looser-style">Din summa: {{ playersum }}</div>
+                {% else %}
+                    <div class="sum-style looser-style">Bankens summa: {{ banksum }} </div>
+                    <div class="player-sum-decide-phase winner-style">Din summa: {{ playersum }}</div>
+                {% endif %}
+            </div>
+            <div class="board-main-two-col">
+                <div class="card-container-two-col">
+                    {% for value in bankdrawncards %}
+                        {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                            <div class="singlecardcontainerred">
+                        {% else %}
+                            <div class="singlecardcontainerblack">
+                        {% endif %}
+                            <div class="singlecardborder">
+                                <div class="upperleftrank">
+                                    {% if value|length == 2 %}
+                                    {{ value|slice(0, 1) }}
+                                    {% else %}
+                                    {{ value|slice(0, 2) }}
+                                    {% endif %}
+                                </div>
+                                <div class="upperleftsuit">
+                                    {{ value[-1:] }}
+                                </div>
+                                <br>
+                                <div class="lowerrightsuit">
+                                    {{ value[-1:] }}
+                                </div>
+                                <div class="lowerrightrank">
+                                    {% if value|length == 2 %}
+                                    {{ value|slice(0, 1) }}
+                                    {% else %}
+                                    {{ value|slice(0, 2) }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
 
-            <div class="bankphase-cardcontainer bankphase-bankcards">
-                {% for value in bankdrawncards %}
-                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
-                        <div class="singlecardcontainerred">
-                    {% else %}
-                        <div class="singlecardcontainerblack">
-                    {% endif %}
-                        <div class="singlecardborder">
-                            <div class="upperleftrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
-                            </div>
-                            <div class="upperleftsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <br>
-                            <div class="lowerrightsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <div class="lowerrightrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <div class="bankphase-cardcontainer bankphase-playercards">
-                {% for value in playerdrawncards %}
-                    {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
-                        <div class="singlecardcontainerred">
-                    {% else %}
-                        <div class="singlecardcontainerblack">
-                    {% endif %}
-                        <div class="singlecardborder">
-                            <div class="upperleftrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
-                            </div>
-                            <div class="upperleftsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <br>
-                            <div class="lowerrightsuit">
-                                {{ value[-1:] }}
-                            </div>
-                            <div class="lowerrightrank">
-                                {% if value|length == 2 %}
-                                {{ value|slice(0, 1) }}
-                                {% else %}
-                                {{ value|slice(0, 2) }}
-                                {% endif %}
+                <div class="card-container-two-col">
+                    {% for value in playerdrawncards %}
+                        {% if (value[-1:] == '♥') or (value[-1:] == '♦') %}
+                            <div class="singlecardcontainerred">
+                        {% else %}
+                            <div class="singlecardcontainerblack">
+                        {% endif %}
+                            <div class="singlecardborder">
+                                <div class="upperleftrank">
+                                    {% if value|length == 2 %}
+                                    {{ value|slice(0, 1) }}
+                                    {% else %}
+                                    {{ value|slice(0, 2) }}
+                                    {% endif %}
+                                </div>
+                                <div class="upperleftsuit">
+                                    {{ value[-1:] }}
+                                </div>
+                                <br>
+                                <div class="lowerrightsuit">
+                                    {{ value[-1:] }}
+                                </div>
+                                <div class="lowerrightrank">
+                                    {% if value|length == 2 %}
+                                    {{ value|slice(0, 1) }}
+                                    {% else %}
+                                    {{ value|slice(0, 2) }}
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        <h4>{{ outcome }}<a href="{{ path('game_init') }}"><button class="game-button">Spela igen</button></a></h4>
+                    {% endfor %}
+                </div>
         {% endif %}
+            </div>
         </div>
-    {% endif %}
+    </div>
 
-    {{ dump(loss) }}
-    {{ dump(gamedeck) }}
-    {{ dump(playerdrawncards) }}
-    {{ dump(bankdrawncards) }}
 
 
 {% endblock %}
