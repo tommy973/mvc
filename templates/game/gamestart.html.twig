@@ -5,8 +5,8 @@
 {% block body %}
     <h1>Spela 21</h1>
 
-    <a href="{{ path('game_init') }}">Starta 21</a>
-
-    {{ dump(gamestarted) }}
+    <div class="game-start-center">
+        <a href="{{ path('game_init') }}"><button class="big-game-button">Starta spelet</button></a>
+    </div>
 
 {% endblock %}
