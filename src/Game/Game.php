@@ -49,6 +49,7 @@ class Game
             $gameStarted = false;
         }
         $this->deck = new DeckOfCards();
+        $this->deck->shuffleDeck();
 
         $data = [
             'gamestarted' => $gameStarted,
@@ -61,6 +62,7 @@ class Game
     {
         if ($this->deck->numberOfCardsInDeck() == 0) {
             $this->deck = new DeckOfCards();
+            $this->deck->shuffleDeck();
         }
 
         if (empty($this->playerpoints)) {
