@@ -48,9 +48,7 @@ class GameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game = $session->get("currentgame");
-        
         $game->initGame();
-        
         $session->set("currentgame", $game);
 
         return $this->redirectToRoute('game_play');
@@ -61,7 +59,7 @@ class GameController extends AbstractController
     public function gamePlay(
         SessionInterface $session
     ): Response {
-        
+
         $game = $session->get("currentgame");
         $data = $game->playGame($session);
         $session->set("currentgame", $game);
