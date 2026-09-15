@@ -15,13 +15,10 @@ class SessionController extends AbstractController
     public function play(
         SessionInterface $session
     ): Response {
-        $sessionData = new AttributeBag(); // Use AttributeBag to get all the id:s from the session
-
-        // $currentSession = $request->getSession();
+        // $sessionData = new AttributeBag(); // Use AttributeBag to get all the id:s from the session
 
         $data = [
             "currentSession" => $session->all(),
-            "sessionLength" => $session->count(),
         ];
 
         return $this->render('session.html.twig', $data);
@@ -29,7 +26,6 @@ class SessionController extends AbstractController
 
     #[Route("/session/delete", name: "session_delete", methods: ['POST'])]
     public function initCallback(
-        Request $request,
         SessionInterface $session
     ): Response {
         $session->clear();
