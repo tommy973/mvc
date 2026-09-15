@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+// use Symfony\Component\HttpFoundation\Exception;
+use App\Controller\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,16 +16,15 @@ class DeckControllerJson
 {
     #[Route("/api/deck", name: "jsondeck", methods: ['GET'])]
     public function jsonDeck(
-        Request $request,
         SessionInterface $session
     ): Response {
         $deck = $session->get("currentdeck");
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
-        } else {
-            $deck->sortDeck();
         }
+
+        $deck->sortDeck();
 
         $data = [
             'deck' => $deck->getDeckAsStringArray(),
@@ -41,7 +42,6 @@ class DeckControllerJson
 
     #[Route("/api/deck/shuffle", name: "jsonshuffle", methods: ['GET'])]
     public function jsonShuffle(
-        Request $request,
         SessionInterface $session
     ): Response {
         $deck = $session->get("currentdeck");
@@ -83,20 +83,21 @@ class DeckControllerJson
         }
 
         $cardlimit = $deck->numberOfCardsInDeck();
+        $drawnCard = [];
 
         if ($number > $cardlimit) {
             throw new \Exception("Du har dragit fler kort än som finns i leken");
         }
 
-        if (isset($number)) {
-            for ($i = 0; $i < $number; $i++) {
-                $singleCard = $deck->drawSingleCard();
-                $drawnCard[] = $singleCard->getCardAsString();
-            }
-        } else {
+        // if (isset($number)) {
+        for ($i = 0; $i < $number; $i++) {
             $singleCard = $deck->drawSingleCard();
-            $drawnCard = $singleCard->getCardAsString();
+            $drawnCard[] = $singleCard->getCardAsString();
         }
+        // } elseif (!isset($number)) {
+        //     $singleCard = $deck->drawSingleCard();
+        //     $drawnCard = $singleCard->getCardAsString();
+        // }
 
 
         $data = [
@@ -123,9 +124,11 @@ class DeckControllerJson
         int $players
     ): Response {
         $deck = $session->get("currentdeck");
+        $cardHands = [];
+        $cardhandsArray = [];
 
-        $number = $request->request->get('num_cards');
-        $players = $request->request->get('num_players');
+        (int) $number = $request->request->get('num_cards');
+        (int) $players = $request->request->get('num_players');
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
@@ -133,7 +136,7 @@ class DeckControllerJson
 
         $cardlimit = $deck->numberOfCardsInDeck();
 
-        if (($number * $players) > $cardlimit) {
+        if (((int) $number * (int) $players) > $cardlimit) {
             throw new \Exception("Du har dragit fler kort än som finns i leken");
         }
 
