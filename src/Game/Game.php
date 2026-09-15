@@ -12,7 +12,7 @@ class Game
     /**
      * @var DeckOfCards
      */
-    private DeckOfCards $deck;
+    public DeckOfCards $deck;
 
     /**
      * @var CardHand
@@ -22,8 +22,8 @@ class Game
     /**
      * @var CardHand
      */
-
     public CardHand $bankhand;
+
     public int $playerpoints;
     public int $bankpoints;
     public string $gamephase;
@@ -48,6 +48,7 @@ class Game
         if (empty($gameStarted)) {
             $gameStarted = false;
         }
+        $this->deck = new DeckOfCards();
 
         $data = [
             'gamestarted' => $gameStarted,
@@ -58,7 +59,7 @@ class Game
 
     public function initGame(): void
     {
-        if (empty($this->gamedeck)) {
+        if ($this->deck->numberOfCardsInDeck() == 0) {
             $this->deck = new DeckOfCards();
         }
 
@@ -172,5 +173,18 @@ class Game
         elseif ($this->gamephase == "playersturn") {
             $this->gamephase = "banksturn";
         }
+    }
+
+    /**
+     * @return array<String, mixed>
+     */
+    public function getStatus(): array
+    {
+        $data = [
+            'playerpoints' => $this->playerpoints,
+            'bankpoints' => $this->bankpoints,
+        ];
+
+        return $data;
     }
 }
