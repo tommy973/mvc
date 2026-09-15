@@ -18,17 +18,17 @@ class Game
      * @var CardHand
      */
     public CardHand $playerhand;
-    
+
     /**
      * @var CardHand
      */
-    
+
     public CardHand $bankhand;
     public int $playerpoints;
     public int $bankpoints;
     public string $gamephase;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->deck = new DeckOfCards();
         $this->playerhand = new CardHand();
