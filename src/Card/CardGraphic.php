@@ -4,19 +4,20 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
-    private $suitrep = [
-        '♥',
-        '♠',
-        '♦',
-        '♣',
-    ];
+    /**
+     * @var array<string>
+     */
+    private array $suitrep = ['♥', '♠', '♦', '♣',];
 
-    private $rankrep = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    /**
+     * @var array<string>
+     */
+    private array $rankrep = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
-    protected $suit;
-    protected $rank;
+    protected string $suit;
+    protected string $rank;
 
-    public function __construct($suit = null, $rank = null)
+    public function __construct(string $suit, string $rank)
     {
         $this->suit = $suit;
         $this->rank = $rank;
