@@ -6,3 +6,5 @@ parameters:
         - ../../tests
     bootstrapFiles:
         #- .phpstan.constants.php
+    excludePaths:
+        - ../../tests/bootstrap.php
