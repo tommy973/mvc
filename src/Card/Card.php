@@ -4,10 +4,10 @@ namespace App\Card;
 
 class Card
 {
-    protected $suit;
-    protected $rank;
+    protected string $suit;
+    protected string $rank;
 
-    public function __construct($suit = null, $rank = null)
+    public function __construct(string $suit, string $rank)
     {
         $this->suit = $suit;
         $this->rank = $rank;
