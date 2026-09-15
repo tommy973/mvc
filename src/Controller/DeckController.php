@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
-// use Symfony\Component\HttpFoundation\Exception;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,7 +80,7 @@ class DeckController extends AbstractController
         $cardlimit = $deck->numberOfCardsInDeck();
 
         if ($cardlimit == 0) {
-            throw new \Exception("Leken är slut, du kan inte dra fler kort.");
+            throw new Exception("Leken är slut, du kan inte dra fler kort.");
         }
 
         $singleCard = $deck->drawSingleCard();
@@ -114,7 +114,7 @@ class DeckController extends AbstractController
         $cardlimit = $deck->numberOfCardsInDeck();
 
         if ($number > $cardlimit) {
-            throw new \Exception("Du har dragit fler kort än som finns i leken");
+            throw new Exception("Du har dragit fler kort än som finns i leken");
         }
 
         for ($i = 0; $i < $number; $i++) {
@@ -166,11 +166,11 @@ class DeckController extends AbstractController
         $cardlimit = $deck->numberOfCardsInDeck();
 
         if ($players < 1 || $players > 52) {
-            throw new \Exception("Du måste välja ett giltigt antal spelare (1 - 52)");
+            throw new Exception("Du måste välja ett giltigt antal spelare (1 - 52)");
         }
 
         if (($cards * $players) > $cardlimit) {
-            throw new \Exception("Antalet kort räcker inte till alla spelare");
+            throw new Exception("Antalet kort räcker inte till alla spelare");
         }
 
         for ($i = 0; $i < $players; $i++) {
