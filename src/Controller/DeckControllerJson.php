@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
-// use Symfony\Component\HttpFoundation\Exception;
-use App\Controller\Exception;
+use Exception;
+use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,7 +86,7 @@ class DeckControllerJson
         $drawnCard = [];
 
         if ($number > $cardlimit) {
-            throw new \Exception("Du har dragit fler kort än som finns i leken");
+            throw new Exception("Du har dragit fler kort än som finns i leken");
         }
 
         // if (isset($number)) {
@@ -137,7 +137,7 @@ class DeckControllerJson
         $cardlimit = $deck->numberOfCardsInDeck();
 
         if (((int) $number * (int) $players) > $cardlimit) {
-            throw new \Exception("Du har dragit fler kort än som finns i leken");
+            throw new Exception("Du har dragit fler kort än som finns i leken");
         }
 
         for ($i = 0; $i < $players; $i++) {
