@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+// use Symfony\Component\HttpFoundation\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,6 @@ class DeckController extends AbstractController
     // Main landing route
     #[Route("/card", name: "card_landing")]
     public function cardLanding(
-        SessionInterface $session
     ): Response {
         return $this->render('card.html.twig');
     }
@@ -31,9 +31,8 @@ class DeckController extends AbstractController
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
-        } else {
-            $deck->sortDeck();
         }
+        $deck->sortDeck();
 
         $data = [
             'deckofcards' => $deck->getDeckAsStringArray(),
@@ -53,9 +52,8 @@ class DeckController extends AbstractController
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
-        } else {
-            $deck->sortDeck();
         }
+        $deck->sortDeck();
 
         $deck->shuffleDeck();
 
@@ -107,6 +105,7 @@ class DeckController extends AbstractController
         int $number
     ): Response {
         $deck = $session->get("currentdeck");
+        $drawnCard = [];
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
@@ -136,7 +135,6 @@ class DeckController extends AbstractController
 
     #[Route("/card/deck/dealinit", name: "deal_cards_init", methods: ['GET'])]
     public function dealCardsInit(
-        SessionInterface $session
     ): Response {
         return $this->render('cards/dealcard.html.twig');
     }
@@ -144,7 +142,6 @@ class DeckController extends AbstractController
     #[Route("/card/deck/dealinit", name: "deal_cards_init_post", methods: ['POST'])]
     public function dealCardsInitPost(
         Request $request,
-        SessionInterface $session
     ): Response {
         $numPlayers = $request->request->get('num_players');
         $numCards = $request->request->get('num_cards');
@@ -159,6 +156,8 @@ class DeckController extends AbstractController
         int $cards
     ): Response {
         $deck = $session->get("currentdeck");
+        $cardHands = [];
+        $cardhandsArray = [];
 
         if (empty($deck)) {
             $deck = new DeckOfCards();
