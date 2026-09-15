@@ -39,7 +39,6 @@ class DeckOfCards
     {
         $cards = [];
         foreach ($this->deck as $singleCard) {
-            // $cards[] = $singleCard->getRankAsString() . " of " . $singleCard->getSuitAsString();
             $cards[] = $singleCard->getCardAsString();
         }
         return $cards;
