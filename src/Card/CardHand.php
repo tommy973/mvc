@@ -6,14 +6,20 @@ use App\Card\Card;
 
 class CardHand
 {
-    private $hand = [];
+    /**
+     * @var array<mixed>
+     */
+    private array $hand = [];
 
-    public function add(Card $card): void
+    public function add(object $card): void
     {
         $this->hand[] = $card;
     }
 
-    public function getHandAsString(): array
+    /**
+     * @return list<String|null>
+     */
+    public function getHandAsString()
     {
         $values = [];
         foreach ($this->hand as $card) {
@@ -37,6 +43,9 @@ class CardHand
         return count($this->hand);
     }
 
+    /**
+     * @return array<Card>
+     */
     public function getHand(): array
     {
         return $this->hand;
