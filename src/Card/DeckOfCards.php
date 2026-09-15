@@ -8,7 +8,10 @@ use App\Card\CardHand;
 
 class DeckOfCards
 {
-    private $deck = [];
+    /**
+     * @var array<Card>
+     */
+    private array $deck = [];
 
     /**
      * Creates a deck of 52 cards, sorted by suits and ranks
@@ -18,9 +21,11 @@ class DeckOfCards
         $suits = ['0', '1', '2', '3'];
         $ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
         // $ranks = ['0', '9'];
+        $suitsLength = count($suits);
+        $ranksLength = count($ranks);
 
-        for ($i = 0; $i < count($suits); $i++) {
-            for ($j = 0; $j < count($ranks); $j++) {
+        for ($i = 0; $i < $suitsLength; $i++) {
+            for ($j = 0; $j < $ranksLength; $j++) {
                 $this->deck[] = new CardGraphic($suits[$i], $ranks[$j]);
             }
         }
@@ -28,9 +33,9 @@ class DeckOfCards
 
     /**
      * Function to get a printable array with all the remaining cards in the deck
-     * @return array with all cards in the deck as "Rank of Suit"
+     * @return list<String|null>
      */
-    public function getDeckAsStringArray(): array
+    public function getDeckAsStringArray()
     {
         $cards = [];
         foreach ($this->deck as $singleCard) {
@@ -43,7 +48,7 @@ class DeckOfCards
     /**
      * Shuffles the deck
      */
-    public function shuffleDeck()
+    public function shuffleDeck(): void
     {
         shuffle($this->deck);
     }
@@ -51,7 +56,7 @@ class DeckOfCards
     /**
      * Sorts the deck
      */
-    public function sortDeck()
+    public function sortDeck(): void
     {
         sort($this->deck);
     }
@@ -82,14 +87,20 @@ class DeckOfCards
     /**
      * Removes the cards that are currently drawn by the players
      */
-    public function removeCards(CardHand $handToRemove)
+    public function removeCards(CardHand $handToRemove): void
     {
         $removeCards = [];
         $counter = 0;
         foreach ($this->getDeck() as $deckCard) {
             echo $counter;
             foreach ($handToRemove->getHand() as $card) {
-                if (($card->getSuit() == $deckCard->getSuit()) and ($card->getRank() == $deckCard->getRank())) {
+                $currentDC = [];
+                $currentDC[] = $deckCard->getSuit();
+                $currentDC[] = $deckCard->getRank();
+                $currentHC = [];
+                $currentHC[] = $card->getSuit();
+                $currentHC[] = $card->getRank();
+                if (($currentHC[0] == $currentDC[0]) and ($currentHC[1] == $currentDC[1])) {
                     $removeCards[] = $counter;
                 }
             }
@@ -103,7 +114,7 @@ class DeckOfCards
 
     /**
      * Function to get the current Deck as an array
-     * @return array The current deck
+     * @return array<Card>
      */
     public function getDeck(): array
     {
