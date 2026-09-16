@@ -122,6 +122,43 @@
                 kursmoment är att om jag inte får saker att fungera så testa att göra om det en gång till. Fungerar det inte då så testa 
                 en gång till. Tillslut så fungerar det.
             </p>
+            <h3 id="kmom03">Kmom03</h3>
+            <p>
+                Det här var en rolig men utmanande uppgift som tog sin tid och arbetsinsats. Det var många olika delar som skulle göras så 
+                tyvärr har jag inte gjort alla valfria uppgifter. Det får bli senare då de var väldigt inspirerande idéer. Jag bestämde mig 
+                i alla fall för att göra den enklaste versionen av spel, Tjugo-ett, då jag tänkte att det var bättre att börja där och bygga 
+                vidare till något större senare i uppgiften. Detta för att jag känner att jag behöver träna på grunderna i Symfony, vilket 
+                den här uppgiften verkligen har gett mig möjligheten till.
+            </p>
+            <p>
+                Jag började med att skapa flödesschemat och det fyllde sin funktion. Trots att en spelomgång inte innehåller speciellt 
+                många steg så blev det ändå en del olika vägskäl i flödesschemat och framför allt så behöver man fundera igenom vilka 
+                olika utfall det finns vid varje händelse. Detta tillsammans med pseudokoden skapade en bra grund för att börja koda på riktigt.
+            </p>
+            <p>
+                När jag skapade mitt spel så tänkte jag dock inte på ”rätt” sätt från början utan började konstruera spelet enbart utifrån 
+                de klasser som skapades i kmom02. Där fanns ju metoder för de flesta händelser under ett kortspel så 
+                som ”Dra ett kort”, ”Dela ut kort”, ”Blanda kort” med mera. Jag fick ihop ett spel av detta, och all 
+                information som behövdes för spelet sparades i sessionen. Men det blev väldigt mycket kod i controllern 
+                så efter att ha tänkt igenom uppgiften ett steg till så insåg jag att jag borde kunna skapa en klass med tillhörande 
+                klassvariabler som kan sköta samma sak som sessionen gör. Efter att jag lyft över den mesta av koden till Game-klassen 
+                så blev det en väldigt tunn controller vad gäller kodmängd.
+            </p>
+            <p>
+                Jag byggde sedan vidare och lade till några funktioner så som att spelet fortsätter i nya omgångar, poängräkning sker 
+                och när leken är slut så blandas leken igen. Om leken tar slut under en omgång så blandas bara de kort som inte används 
+                av banken eller spelaren in i den nya leken.
+            </p>
+            <p>
+                Jag skulle som jag skrev innan vilja utveckla min webbapplikation och bygga vidare på spelet för att försöka implementera 
+                flera av de valfria kraven som fanns för uppgiften. Det skulle också gå att bygga in mer av de olika Controllernas kod 
+                till enskilda klasser och få Controllerna att bli ännu tunnare.
+            </p>
+            <p>
+                Min TIL för det här kursmomentet är att använda valideringsprogrammen mer frekvent under kursmomentens gång. 
+                Här blev det att jag började använda det först i slutet vilket gav väldigt många felmeddelanden. Men om jag 
+                kör det oftare så lär jag mig ju längs vägen hur jag skriver bättre kod.
+            </p>
         </div>
     </article>
 {% endblock %}
